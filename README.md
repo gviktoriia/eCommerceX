@@ -4,6 +4,9 @@
 
 > Install mongodb
 
+````sh
+nom install
+````
 
 ## Env variables
 ````sh
