@@ -1,19 +1,20 @@
-Preparation
+## Preparation
 
-Install nodejs
-Install mongodb
+> Install nodejs
 
-Run frontend part
+> Install mongodb
 
+## Run frontend part
+````sh
 npm install
 cd frontend
 npm start
+````
 
+## Technologies
 
-Technologies
+- [x] React
 
- React
+## About
 
-About
-
-Project represents watch internet shop.
+* Project represents watch internet shop.
