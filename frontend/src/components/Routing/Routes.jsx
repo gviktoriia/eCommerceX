@@ -1,0 +1,10 @@
+export const home_route = "/";
+export const men_route = "/mens-watch";
+export const women_route = "/womens-watch";
+export const smart_route = "/smart-watch";
+export const login_route = "/login";
+export const signup_route = "/signup";
+export const shopping_route = "/shopping-cart";
+export const details_route = "/watch-details";
+export const checkout_route = "/checkout"
+export const profile_route = "/profile"
