@@ -2,7 +2,7 @@ import { Box } from '@mui/material'
 import { Routes, Route } from 'react-router-dom'
 import React from 'react'
 import MainPage from '../MainPage/MainPage'
-import { checkout_route, details_route, home_route, login_route, men_route, profile_route, shopping_route, signup_route, smart_route, women_route } from './Routes'
+import {admin_details_route, checkout_route, details_route, home_route, login_route, men_route, profile_route, shopping_route, signup_route, smart_route, women_route } from './Routes'
 import MensWatchPage from '../MensWatchPage/MensWatchPage'
 import WomensWatchPage from '../WomensWatchPage/WomensWatchPage'
 import SmartWatchPage from '../SmartWatchPage.jsx/SmartWatchPage'
@@ -12,6 +12,7 @@ import ShoppingCartPage from '../ShoppingCartPage/ShoppingCartPage'
 import WatchDetailsPage from '../WatchDetailsPage/WatchDetailsPage'
 import CheckoutPage from '../CheckoutPage/CheckoutPage'
 import ProfilePage from '../ProfilePage/ProfilePage'
+import AdminWatchDetailsPage from '../AdminWatchDetailsPage/AdminWatchDetailsPage'
 
 function Router() {
   return (
@@ -27,6 +28,7 @@ function Router() {
             <Route path={details_route} element={<WatchDetailsPage />}></Route>
             <Route path={checkout_route} element={<CheckoutPage />}></Route>
             <Route path={profile_route} element={<ProfilePage />}></Route>
+            <Route path={admin_details_route} element={<AdminWatchDetailsPage />}></Route>
         </Routes>
     </Box>
   )

@@ -16,13 +16,15 @@ function Header() {
         <Menu />
       </Grid>
       {window.location.href.includes('login') || window.location.href.includes('signup') ||
-          window.location.href.includes('cart') || window.location.href.includes('details') ? 
+          window.location.href.includes('cart') || window.location.href.includes('details') ||
+          window.location.href.includes('profile') ? 
           null :
           <Grid item xs={12} sm={6} md={2}>
             <SearchBar />
           </Grid>}
       <Grid item xs={6} sm={4} md={3}>
-        {window.location.href.includes('login') || window.location.href.includes('signup') ? null : <LoginBtn /> }
+        {window.location.href.includes('login') || window.location.href.includes('signup') 
+        || window.location.href.includes('profile') ? null : <LoginBtn /> }
       </Grid>
       <Grid item xs={6} sm={2} md={1}>
         <ShoppingCartIcon />

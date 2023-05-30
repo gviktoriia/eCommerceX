@@ -18,8 +18,10 @@ function SignupPage() {
     }}>
         <Header />
         <LoginText title="Реєстрація"/>
-        <LoginTextField title="Логін" type="email" />
+        <LoginTextField title="ПІБ" type="text" />
+        <LoginTextField title="E-mail" type="email" />
         <LoginTextField title="Пароль" type="password" />
+        <LoginTextField title="Підтвердіть пароль" type="password" />
         <SignupActionBtn />
         <SignupInvite invite="Уже зареєстровані?" link="Увійти" to={login_route} />
         <Footer />

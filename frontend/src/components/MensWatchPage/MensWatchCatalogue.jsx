@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SortingElement from '../MainPage/MainCatalogue/SortingElement';
 import { Box, Grid } from '@mui/material';
 import ItemCard from '../MainPage/MainCatalogue/ItemCard';
+import AdminAddItemBtn from '../MainPage/MainCatalogue/AdminAddItemBtn';
+import AddItemDialog from '../MainPage/MainCatalogue/AddItemDialog';
 
 const array = [{title : "Fossil Leather Watch", price: "6873"},
                 {title : "Fossil Leather Watch", price: "6873"},
@@ -14,12 +16,29 @@ const array = [{title : "Fossil Leather Watch", price: "6873"},
                 {title : "Fossil Leather Watch", price: "6873"},];
 
 function MensWatchCatalogue() {
+
+  const [openAddItemDialog, setOpenAddItemDialog] = useState(false);
+
+  const handleOpenDialog = () => {
+    setOpenAddItemDialog(true);
+  }
+  const handleCloseDialog = () => {
+    setOpenAddItemDialog(false);
+  }
+
   return (
     <Box sx={{
         backgroundColor: "#171A25",
         height: "fit-content",
     }}>
-        <SortingElement />
+        <Grid container direction="row" justifyContent='center'>
+          <Grid item>
+            <AdminAddItemBtn onClick={handleOpenDialog} />
+          </Grid>
+          <Grid item marginLeft="450px">
+            <SortingElement />
+          </Grid>
+        </Grid>
         <Grid container columnSpacing={4} rowSpacing={5} sx={{
                   textAlign: 'center',
                   width: "100%",
@@ -38,6 +57,7 @@ function MensWatchCatalogue() {
                 </Grid>);})
             }
         </Grid>    
+        <AddItemDialog open={openAddItemDialog} onClose={handleCloseDialog} />
     </Box>
   )
 }

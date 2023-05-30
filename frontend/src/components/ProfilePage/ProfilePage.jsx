@@ -1,8 +1,9 @@
 import React from 'react'
 import Header from '../MainPage/Header/Header'
-import { Box } from '@mui/material'
+import { Box, Button, Grid } from '@mui/material'
 import PageTitle from '../MensWatchPage/PageTitle'
 import Footer from '../MainPage/Footer/Footer'
+import LoginTextField from '../LoginPage/LoginTextField'
 
 function ProfilePage() {
   return (
@@ -12,8 +13,32 @@ function ProfilePage() {
         height: "fit-content",
     }}>
         <Header />
-        <PageTitle title="Ім'я користувача" />
-        
+        <PageTitle title="Профіль" />
+        <LoginTextField title="ПІБ" type="text" />
+        <LoginTextField title="Електронна пошта" type="email" />
+        <LoginTextField title="Населений пункт" type="text" />
+        <LoginTextField title="Адреса" type="text" />
+        <LoginTextField title="Номер картки" type="text" />
+        <LoginTextField title="Дата закінчення" type="data" />
+        <LoginTextField title="CVV" type="password" />
+        <Grid container justifyContent='center'>
+            <Button variant='outlined' sx={{
+            color: "white",
+            borderColor: "white",
+            fontFamily: "Montserrat",
+            fontSize: '22px',
+            fontWeight: "500px",
+            textTransform: 'none',
+            width: '250px',
+            height: '70px',
+            borderRadius: '40px',
+            marginTop: '20px',
+            "&:hover": {
+                backgroundColor: "white",
+                color: 'black',
+            },
+        }}>Зберегти</Button>
+        </Grid>
         <Footer />
     </Box>
   )
