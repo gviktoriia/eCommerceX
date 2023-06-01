@@ -31,14 +31,14 @@ function MainPageCatalogue() {
         backgroundColor: "#171A25",
         height: "fit-content",
     }}>
-        <Grid container direction="row" justifyContent='center'>
-          <Grid item>
-            <AdminAddItemBtn onClick={handleOpenDialog} />
-          </Grid>
-          <Grid item marginLeft="450px">
-            <SortingElement />
-          </Grid>
+        <Grid container direction="row" justifyContent='center' columnSpacing={18} alignItems="center" wrap="wrap">
+        <Grid item xs={12} sm={6} md={4} lg={3}>
+          <AdminAddItemBtn onClick={handleOpenDialog} />
         </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
+          <SortingElement />
+        </Grid>
+      </Grid>
         <Grid container columnSpacing={4} rowSpacing={5} sx={{
                   textAlign: 'center',
                   width: "100%",

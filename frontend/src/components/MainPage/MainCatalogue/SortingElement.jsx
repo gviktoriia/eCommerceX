@@ -5,13 +5,11 @@ import SelectSortingOption from './SelectSortingOption'
 
 function SortingElement() {
   return (
-    <Grid container direction="row" justifyContent="flex-end" sx={{ paddingRight: '250px' }} spacing={2}>
-        <Grid item marginTop="40px">
-            <SortingIcon />
-        </Grid>
-        <Grid item marginTop="12px">
-            <SelectSortingOption />
-        </Grid>
+    <Grid container direction="row" justifyContent="flex-end" spacing={2}>
+      <Grid item sx={{ display: 'flex', alignItems: 'center' }}>
+        <SortingIcon />
+        <SelectSortingOption />
+      </Grid>
     </Grid>
   )
 }
