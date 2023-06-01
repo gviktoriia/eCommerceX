@@ -37,8 +37,8 @@ function SelectSortingOption() {
               color: 'white',
           }}
         >
-          <MenuItem value={10}>За спаданням</MenuItem>
-          <MenuItem value={20}>За зростанням</MenuItem>
+          <MenuItem value={10}>Спочатку дорожчі</MenuItem>
+          <MenuItem value={20}>Спочатку дешевші</MenuItem>
         </Select>
       </FormControl>
     </div>
