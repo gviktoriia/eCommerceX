@@ -14,7 +14,7 @@ function ToCartBtn() {
         width: { xs: '250px', sm: '280px', md: '300px' },
         height: { xs: '45px', sm: '50px', md: '55px' },
         borderRadius: '20px',
-        marginTop: { xs: '30px', sm: '40px', md: '50px' },
+        marginTop: { xs: '10px', sm: '20px', md: '30px' },
         "&:hover": {
             backgroundColor: "white",
             color: 'black',

@@ -8,7 +8,7 @@ function WatchInfo(props) {
         <Grid item>
             <Grid container direction='row'>
                 <Grid item>
-                    <Box height={{ xs: '200px', sm: '300px', md: '374px' }}
+                    <Box height={{ xs: '200px', sm: '300px', md: '390px' }}
                         width={{ xs: '300px', sm: '400px', md: '550px' }}>
                         <CardMedia
                                     component="img"
@@ -79,6 +79,16 @@ function WatchInfo(props) {
                                 fontSize: { xs: '16px', sm: '18px', md: '22px' },
                                 lineHeight: '27px',
                             }}>Стиль: {props.style}</Typography>
+                        </Grid>
+                        <Grid item paddingTop={{ xs: '10px', sm: '12px', md: '16px' }}>
+                            <Typography sx={{
+                                color: 'white',
+                                fontFamily: 'Montserrat',
+                                fontStyle: 'normal',
+                                fontWeight: 400,
+                                fontSize: { xs: '16px', sm: '18px', md: '22px' },
+                                lineHeight: '27px',
+                            }}>Кількість: {props.quantity}</Typography>
                         </Grid>
                         <Grid item>
                             <ToCartBtn />
