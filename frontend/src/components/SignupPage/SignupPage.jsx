@@ -19,7 +19,7 @@ function SignupPage() {
         <Header />
         <LoginText title="Реєстрація"/>
         <LoginTextField title="ПІБ" type="text" />
-        <LoginTextField title="E-mail" type="email" />
+        <LoginTextField title="E-mail/Номер телефону" type="text" />
         <LoginTextField title="Пароль" type="password" />
         <LoginTextField title="Підтвердіть пароль" type="password" />
         <SignupActionBtn />

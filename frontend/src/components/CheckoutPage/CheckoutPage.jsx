@@ -15,7 +15,7 @@ function CheckoutPage() {
         <Header />
         <PageTitle title="Оформлення замовлення" />
         <LoginTextField title="ПІБ" type="text" />
-        <LoginTextField title="Електронна пошта" type="email" />
+        <LoginTextField title="E-mail/Номер телефону" type="text" />
         <LoginTextField title="Населений пункт" type="text" />
         <LoginTextField title="Адреса" type="text" />
         <LoginTextField title="Номер картки" type="number" />
