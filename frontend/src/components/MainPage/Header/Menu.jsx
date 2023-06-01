@@ -6,43 +6,47 @@ import { home_route, men_route, smart_route, women_route } from '../../Routing/R
 
 function Menu() {
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={2}>
         <Grid item>
             <Typography sx={{fontFamily: 'Montserrat',
-                          fontSize: "22px",
+                          fontSize: 'clamp(20px, 3vw, 16px)',
                           fontWeight: "400px",
                           "&:hover": {
-                            fontSize: "25px",
+                            textDecoration: "underline",
+                            color: 'white',
                           }}}>
               <Link to={home_route} style={{ textDecoration: 'none', color: 'white' }}>WATCH</Link>
             </Typography>
         </Grid>
         <Grid item>
             <Typography sx={{fontFamily: 'Montserrat',
-                          fontSize: "22px",
+                          fontSize: 'clamp(20px, 3vw, 16px)',
                           fontWeight: "500px",
                           "&:hover": {
-                            fontSize: "25px",
+                            textDecoration: "underline",
+                            color: 'white',
                           }}}>
               <Link to={men_route} style={{ textDecoration: 'none', color: 'white' }}>Чоловічі</Link>
             </Typography>
         </Grid>
         <Grid item>
             <Typography sx={{fontFamily: 'Montserrat',
-                          fontSize: "22px",
+                          fontSize: 'clamp(20px, 3vw, 16px)',
                           fontWeight: "500px",
                           "&:hover": {
-                            fontSize: "25px",
+                            textDecoration: "underline",
+                            color: 'white',
                           }}}>
               <Link to={women_route} style={{ textDecoration: 'none', color: 'white' }}>Жіночі</Link>
             </Typography>
         </Grid>
         <Grid item>
             <Typography sx={{fontFamily: 'Montserrat',
-                          fontSize: "22px",
+                          fontSize: 'clamp(20px, 3vw, 16px)',
                           fontWeight: "500px",
                           "&:hover": {
-                            fontSize: "25px",
+                            textDecoration: "underline",
+                            color: 'white',
                           }}}>
               <Link to={smart_route} style={{ textDecoration: 'none', color: 'white' }}>Смарт-годинники</Link>
             </Typography>

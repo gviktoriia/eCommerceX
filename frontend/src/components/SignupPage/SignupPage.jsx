@@ -7,15 +7,18 @@ import SignupInvite from '../LoginPage/SignupInvite'
 import Footer from '../MainPage/Footer/Footer'
 import { login_route } from '../Routing/Routes'
 import SignupActionBtn from './SignupActionBtn'
+import NavBar from '../NavBar/NavBar'
 
 function SignupPage() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   return (
     <Box sx={{
         backgroundColor: "#171A25",
         minHeight: "103vh",
         maxHeight: "fit-content",
     }}>
-        <Header />
+        <Header handleMenu={() => setIsMenuOpen(true)} />
+        <NavBar menuOpen={isMenuOpen} closeMenu={() => setIsMenuOpen(false)} />
         <LoginText title="Реєстрація"/>
         <LoginTextField title="ПІБ" type="text" />
         <LoginTextField title="E-mail/Номер телефону" type="text" />

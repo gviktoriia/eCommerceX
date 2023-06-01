@@ -14,7 +14,7 @@ function LoginBtn() {
           fontSize: '22px',
           fontWeight: "500px",
           textTransform: 'none',
-          width: '120px',
+          width: 'fit-content',
           height: '36px',
           borderRadius: '40px',
           "&:hover": {

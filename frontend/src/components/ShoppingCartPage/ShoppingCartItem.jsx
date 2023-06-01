@@ -1,7 +1,6 @@
 import {CardMedia, Grid, Typography } from '@mui/material'
 import React from 'react'
 import ItemCounter from './ItemCounter'
-import ClearIcon from '@mui/icons-material/Clear';
 
 function ShoppingCartItem(props) {
   return (
@@ -30,7 +29,7 @@ function ShoppingCartItem(props) {
             <ItemCounter />
           </Grid>
         </Grid>
-        <Grid item paddingTop='112px' paddingLeft='290px'>
+        <Grid item paddingTop='10px' paddingLeft={{ xs: '20px', sm: '40px', md: '290px' }}>
           <Typography sx={{
             color: 'white',
             fontFamily: 'Montserrat',
@@ -39,11 +38,6 @@ function ShoppingCartItem(props) {
             fontWeight: '500',
             fontStyle: 'normal',
           }}>{props.price} грн</Typography>
-        </Grid>
-        <Grid item paddingLeft='80px' paddingTop='42px'>
-          <ClearIcon sx={{
-            color: 'white',
-          }}/>
         </Grid>
     </Grid>
   )

@@ -1,13 +1,15 @@
-import { Drawer, List, ListItem, ListItemIcon } from '@mui/material'
+import { Drawer, List, ListItem } from '@mui/material'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { home_route, men_route, smart_route, women_route } from '../Routing/Routes';
 
 function NavBar(props) {
 
     const menuItems = [
-        { icon: null, label: "Фільми" },
-        { icon: null, label: "Серіали" },
-        { icon: null, label: "Новинки" },
+        { address: home_route, label: "WATCH" },
+        { address: men_route, label: "Чоловічі" },
+        { address: women_route, label: "Жіночі" },
+        { address: smart_route, label: "Смарт-годинники" },
       ];
     
       const { menuOpen, closeMenu = Function.prototype } = props;
@@ -19,7 +21,7 @@ function NavBar(props) {
       onClose={closeMenu}
       PaperProps={{
         sx: {
-          backgroundColor: "black",
+          backgroundColor: "#171A25",
         },
       }}
     >
@@ -30,10 +32,9 @@ function NavBar(props) {
       >
         {menuItems.map((item, index) => (
           <ListItem key={index}>
-            <ListItemIcon>{item.icon}</ListItemIcon>
             <div >
-              <NavLink
-                to={"/" + item.label.toLowerCase()}>
+              <NavLink style={{color: 'white', textDecoration: 'none'}}
+                to={item.address}>
                 {item.label}
               </NavLink>
             </div>

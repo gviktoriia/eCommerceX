@@ -4,15 +4,18 @@ import { Box, Button, Grid } from '@mui/material'
 import PageTitle from '../MensWatchPage/PageTitle'
 import Footer from '../MainPage/Footer/Footer'
 import LoginTextField from '../LoginPage/LoginTextField'
+import NavBar from '../NavBar/NavBar'
 
 function ProfilePage() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   return (
     <Box sx={{
         backgroundColor: "#171A25",
         minHeight: "103vh",
         height: "fit-content",
     }}>
-        <Header />
+        <Header handleMenu={() => setIsMenuOpen(true)} />
+        <NavBar menuOpen={isMenuOpen} closeMenu={() => setIsMenuOpen(false)} />
         <PageTitle title="Профіль" />
         <LoginTextField title="ПІБ" type="text" />
         <LoginTextField title="E-mail/Номер телефону" type="text" />
