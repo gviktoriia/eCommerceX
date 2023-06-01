@@ -19,8 +19,6 @@ function ProfilePage() {
         <LoginTextField title="Населений пункт" type="text" />
         <LoginTextField title="Адреса" type="text" />
         <LoginTextField title="Номер картки" type="text" />
-        <LoginTextField title="Дата закінчення" type="data" />
-        <LoginTextField title="CVV" type="password" />
         <Grid container justifyContent='center'>
             <Button variant='outlined' sx={{
             color: "white",
