@@ -23,17 +23,19 @@ function EditWatchInfo(props) {
     const [style, setStyle] = React.useState(props.style);
     const [isStyleFocused, setIsStyleFocused] = React.useState(false);
 
-    
+    const [quantity, setQuantity] = React.useState(props.quantity);
+    const [isQuantityFocused, setIsQuantityFocused] = React.useState(false);
+
     const [description, setDescription] = React.useState(props.description);
     const [isDescriptionFocused, setIsDescriptionFocused] = React.useState(false);
 
   return (
     <Grid container paddingTop={{ xs: '20px', sm: '30px', md: '44px' }} justifyContent='center' margin='0'  >
         <Grid item>
-            <Grid container direction='row'>
+            <Grid container direction='row' justifyContent={{ xs: 'center' }}>
                 <Grid item>
-                    <Box height={{ xs: '200px', sm: '300px', md: '374px' }}
-                        width={{ xs: '300px', sm: '400px', md: '550px' }}>
+                    <Box height={{ xs: '350px', sm: '300px', md: '390px' }}
+                        width={{ xs: '350px', sm: '300px', md: '550px' }}>
                         <CardMedia
                                     component="img"
                                     alt="Watch item"
@@ -43,7 +45,7 @@ function EditWatchInfo(props) {
                     </Box>
                 </Grid>
                 <Grid item>
-                    <Grid container direction='column' paddingLeft={{ xs: '20px', md: '50px' }} >
+                    <Grid container direction='column' paddingLeft={{ sm: '20px', md: '50px' }} paddingTop={{ xs: "20px" }} alignItems={{ xs: 'center', sm: 'flex-start' }} >
                         <Grid item>
                             {!isNameFocused ? 
                                 (<Typography onClick={() => {setIsNameFocused(true)}} 
@@ -260,6 +262,42 @@ function EditWatchInfo(props) {
                                 onBlur={event => setIsStyleFocused(false)}>
                             </TextField>)}
                         </Grid>
+                        <Grid item paddingTop={{ xs: '10px', sm: '12px', md: '16px' }}>
+                            {!isQuantityFocused ? (<Typography onClick={() => {setIsQuantityFocused(true)}}
+                            sx={{
+                                color: 'white',
+                                fontFamily: 'Montserrat',
+                                fontStyle: 'normal',
+                                fontWeight: 400,
+                                fontSize: { xs: '16px', sm: '18px', md: '22px' },
+                                lineHeight: '27px',
+                            }}>Кількість: {quantity}</Typography>) : 
+                            (<TextField autoFocus type="number"
+                                sx={{
+                                    color: 'white',
+                                    fontFamily: 'Montserrat',
+                                    fontStyle: 'normal',
+                                    fontWeight: 500,
+                                    fontSize: { xs: '18px', sm: '20px', md: '24px' },
+                                    lineHeight: '1.6', 
+                                    '& .MuiInputBase-root': {
+                                      '& input': {
+                                        color: 'white', 
+                                        padding: '8px 0', 
+                                      },
+                                    },
+                                    '& .MuiOutlinedInput-notchedOutline': {
+                                      borderColor: 'white',
+                                    },
+                                    '& .MuiInputBase-input': {
+                                      caretColor: 'white',
+                                    },
+                                  }}
+                                value={quantity}
+                                onChange={event => setQuantity(event.target.value)}
+                                onBlur={event => setIsQuantityFocused(false)}>
+                                </TextField>)}
+                        </Grid>
                         <Grid item>
                             <FileUpload />
                         </Grid>
@@ -268,7 +306,7 @@ function EditWatchInfo(props) {
             </Grid>
         </Grid>
         <Grid container direction="column" maxWidth="1130px">
-            <Grid item paddingTop={{ xs: '30px', sm: '40px', md: '60px' }} >
+            <Grid item paddingTop={{ xs: '30px', sm: '40px', md: '50px' }} >
                 {!isDescriptionFocused ? (<Typography onClick={() => {setIsDescriptionFocused(true)}}
                 sx={{
                     color: 'white',

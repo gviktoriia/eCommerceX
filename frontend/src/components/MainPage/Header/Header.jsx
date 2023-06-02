@@ -35,7 +35,7 @@ function Header({handleMenu}) {
               edge="start"
               aria-label="menu"
               onClick={handleMenu}
-              sx={{ ml: 5 }}
+              sx={{ ml: 1 }}
             >
               <Dehaze sx={{ color: 'white' }} />
             </IconButton>
@@ -64,7 +64,7 @@ function Header({handleMenu}) {
           <LoginBtn />
         )}
       </Grid>
-      <Grid item xs={3} sm={2} md={2} lg={1} container justifyContent={windowWidth >= 1000 ? 'flex-end' : 'center'}>
+      <Grid item xs={2} sm={2} md={2} lg={1} container justifyContent={windowWidth >= 1000 ? 'flex-end' : 'center'}>
         <ShoppingCartIcon />
       </Grid>
     </Grid>

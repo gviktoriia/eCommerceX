@@ -1,7 +1,14 @@
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, createTheme, useMediaQuery } from '@mui/material'
 import React from 'react'
+const theme = createTheme();
 
 function PageTitle(props) {
+
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const fontSize = isSmallScreen ? "24px" : "40px";
+  const lineHeight = isSmallScreen ? "29px" : "49px";
+
   return (
     <Box sx={{
         position: 'relative',
@@ -25,8 +32,8 @@ function PageTitle(props) {
             fontFamily: "Montserrat",
             fontStyle: "normal",
             fontWeight: 400,
-            fontSize: "40px",
-            lineHeight: "49px",
+            fontSize: fontSize,
+            lineHeight: lineHeight,
             textAlign: 'center',
             paddingTop: '46px',
             zIndex: 1,

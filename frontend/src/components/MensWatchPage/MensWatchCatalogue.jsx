@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import SortingElement from '../MainPage/MainCatalogue/SortingElement';
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, useMediaQuery } from '@mui/material';
 import ItemCard from '../MainPage/MainCatalogue/ItemCard';
 import AdminAddItemBtn from '../MainPage/MainCatalogue/AdminAddItemBtn';
 import AddItemDialog from '../MainPage/MainCatalogue/AddItemDialog';
+
 
 const array = [{title : "Fossil Leather Watch", price: "6873"},
                 {title : "Fossil Leather Watch", price: "6873"},
@@ -16,8 +17,8 @@ const array = [{title : "Fossil Leather Watch", price: "6873"},
                 {title : "Fossil Leather Watch", price: "6873"},];
 
 function MensWatchCatalogue() {
-
   const [openAddItemDialog, setOpenAddItemDialog] = useState(false);
+  const isScreenSmall = useMediaQuery('(max-width: 600px)');
 
   const handleOpenDialog = () => {
     setOpenAddItemDialog(true);
@@ -34,13 +35,26 @@ function MensWatchCatalogue() {
         padding: "20px",
       }}
     >
-      <Grid container direction="row" justifyContent='center' columnSpacing={18} alignItems="center" wrap="wrap">
-          <Grid item xs={12} sm={6} md={4} lg={3}>
-            <AdminAddItemBtn onClick={handleOpenDialog} />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4} lg={3}>
-            <SortingElement />
-          </Grid>
+      <Grid container direction={isScreenSmall ? 'column' : 'row'} justifyContent="center" alignItems="center">
+        {isScreenSmall ? (
+          <>
+            <Grid item xs={8} sm={6} md={4} lg={3}>
+              <AdminAddItemBtn onClick={handleOpenDialog} />
+            </Grid>
+            <Grid item xs={8} sm={6} md={4} lg={3}>
+              <SortingElement />
+            </Grid>
+          </>
+        ) : (
+          <>
+            <Grid item xs={8} sm={6} md={4} lg={3}>
+              <AdminAddItemBtn onClick={handleOpenDialog} />
+            </Grid>
+            <Grid item xs={4} sm={6} md={4} lg={3}>
+              <SortingElement />
+            </Grid>
+          </>
+        )}
       </Grid>
       <Grid
         container
@@ -51,7 +65,7 @@ function MensWatchCatalogue() {
           width: "100%",
           paddingBottom: "3%",
           paddingTop: "10px",
-          margin: "0",
+          margin: "auto",
           alignItems: "center",
           justifyContent: "center"
         }}

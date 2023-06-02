@@ -7,10 +7,10 @@ function WatchInfo(props) {
   return (
     <Grid container paddingTop={{ xs: '20px', sm: '30px', md: '44px' }} justifyContent='center' margin='0'  >
         <Grid item>
-            <Grid container direction='row'>
+            <Grid container direction='row' justifyContent={{ xs: 'center' }}>
                 <Grid item>
-                    <Box height={{ xs: '200px', sm: '300px', md: '390px' }}
-                        width={{ xs: '300px', sm: '400px', md: '550px' }}>
+                    <Box height={{ xs: '350px', sm: '300px', md: '390px' }}
+                        width={{ xs: '350px', sm: '300px', md: '550px' }}>
                         <CardMedia
                                     component="img"
                                     alt="Watch item"
@@ -20,7 +20,7 @@ function WatchInfo(props) {
                     </Box>
                 </Grid>
                 <Grid item>
-                    <Grid container direction='column' paddingLeft={{ xs: '20px', md: '50px' }} >
+                    <Grid container direction='column' paddingLeft={{ sm: '20px', md: '50px' }} paddingTop={{ xs: "20px" }} alignItems={{ xs: 'center', sm: 'flex-start' }} >
                         <Grid item>
                             <Typography sx={{
                                 color: 'white',
@@ -31,7 +31,7 @@ function WatchInfo(props) {
                                 lineHeight: '24px',
                             }}>{props.title}</Typography>
                         </Grid>
-                        <Grid item paddingTop={{ xs: '12px', sm: '16px', md: '20px' }}>
+                        <Grid item paddingTop={{ xs: '12px', sm: '16px', md: '20px' }} >
                             <Typography sx={{
                                 color: 'white',
                                 fontFamily: 'Montserrat',
@@ -98,7 +98,7 @@ function WatchInfo(props) {
                 </Grid>
             </Grid>
         </Grid>
-        <Grid item paddingTop={{ xs: '40px', sm: '50px', md: '70px' }} maxWidth="1130px">
+        <Grid item paddingTop={{ xs: '30px', sm: '40px', md: '50px' }} maxWidth="1130px">
             <Typography sx={{
                 color: 'white',
                 fontFamily: 'Montserrat',

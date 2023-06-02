@@ -13,7 +13,7 @@ function FileUpload() {
         <Grid item xs={1} textAlign='center'>
           <Input type='file' accept="image/*" sx={{color: 'white', marginTop: '30px' }} onChange={handleFile}></Input>
         </Grid>
-        <Grid item xs={1} textAlign='center'>
+        <Grid item xs={1} textAlign='center' justifyContent='center'>
           <Button sx={{backgroundColor:"white",
               color: "black",
               textTransform: "none",
@@ -25,7 +25,7 @@ function FileUpload() {
               marginTop: '15px',
               '&:hover': {
                 backgroundColor: 'white',
-              }}}>Додати фото</Button>
+              }}}>Завантажити фото</Button>
         </Grid>
     </Grid>
   )

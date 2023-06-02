@@ -1,4 +1,4 @@
-import { Button } from '@mui/material'
+import { Button, useMediaQuery } from '@mui/material'
 import React from 'react'
 
 function AdminAddItemBtn({onClick}) {
@@ -12,7 +12,7 @@ function AdminAddItemBtn({onClick}) {
         marginTop: '30px',
         fontWeight: "500px",
         textTransform: 'none',
-        width: 'fit-content',
+        width: '230px',
         height: '40px',
         borderRadius: '40px',
         "&:hover": {

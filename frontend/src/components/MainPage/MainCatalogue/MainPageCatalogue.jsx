@@ -1,4 +1,4 @@
-import { Box, Grid } from '@mui/material'
+import { Box, Grid, useMediaQuery } from '@mui/material'
 import React, { useState } from 'react'
 import SortingElement from './SortingElement'
 import ItemCard from './ItemCard'
@@ -17,6 +17,7 @@ const array = [{title : "Fossil Leather Watch", price: "6873"},
 
 function MainPageCatalogue() {
   const [openAddItemDialog, setOpenAddItemDialog] = useState(false);
+  const isScreenSmall = useMediaQuery('(max-width: 600px)');
 
   const handleOpenDialog = () => {
     setOpenAddItemDialog(true);
@@ -31,14 +32,27 @@ function MainPageCatalogue() {
         backgroundColor: "#171A25",
         height: "fit-content",
     }}>
-        <Grid container direction="row" justifyContent='center' columnSpacing={18} alignItems="center" wrap="wrap">
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <AdminAddItemBtn onClick={handleOpenDialog} />
+        <Grid container direction={isScreenSmall ? 'column' : 'row'} justifyContent="center" alignItems="center">
+          {isScreenSmall ? (
+            <>
+              <Grid item xs={8} sm={6} md={4} lg={3}>
+                <AdminAddItemBtn onClick={handleOpenDialog} />
+              </Grid>
+              <Grid item xs={8} sm={6} md={4} lg={3}>
+                <SortingElement />
+              </Grid>
+            </>
+          ) : (
+            <>
+              <Grid item xs={8} sm={6} md={4} lg={3}>
+                <AdminAddItemBtn onClick={handleOpenDialog} />
+              </Grid>
+              <Grid item xs={4} sm={6} md={4} lg={3}>
+                <SortingElement />
+              </Grid>
+            </>
+          )}
         </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <SortingElement />
-        </Grid>
-      </Grid>
         <Grid container columnSpacing={4} rowSpacing={5} sx={{
                   textAlign: 'center',
                   width: "100%",
