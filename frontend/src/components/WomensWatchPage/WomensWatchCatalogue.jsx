@@ -31,11 +31,11 @@ function WomensWatchCatalogue() {
         minHeight: "100vh",
         padding: "20px",
     }}>
-        <Grid container direction="row" justifyContent='center'>
-          <Grid item>
-          <AdminAddItemBtn onClick={handleOpenDialog} />
+        <Grid container direction="row" justifyContent='center' columnSpacing={18} alignItems="center" wrap="wrap">
+          <Grid item xs={12} sm={6} md={4} lg={3}>
+            <AdminAddItemBtn onClick={handleOpenDialog} />
           </Grid>
-          <Grid item>
+          <Grid item xs={12} sm={6} md={4} lg={3}>
             <SortingElement />
           </Grid>
         </Grid>

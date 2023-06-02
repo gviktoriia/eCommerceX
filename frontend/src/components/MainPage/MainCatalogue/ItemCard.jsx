@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { details_route } from '../../Routing/Routes'
 
 function ItemCard(props) {
+
   return (
     <Link to={details_route} style={{ textDecoration: 'none', color: 'white' }}>
         <Card sx={{ maxWidth: 345, borderRadius:"10px",

@@ -1,7 +1,18 @@
 import { Button, Grid, Typography } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 
 function ItemCounter() {
+  const [count, setCount] = useState(1);
+
+  const handleIncrease = () => {
+    setCount(prevCount => prevCount + 1);
+  };
+
+  const handleDecrease = () => {
+    if (count > 0) {
+      setCount(prevCount => prevCount - 1);
+    }
+  };
   return (
     <Grid container direction="row">
         <Grid item>
@@ -21,7 +32,7 @@ function ItemCounter() {
                     backgroundColor: "white",
                     color: 'black',
                 },
-            }}>-</Button>
+            }} onClick={handleDecrease}>-</Button>
         </Grid>
         <Grid item>
             <Typography paddingLeft="20px" paddingRight="20px" paddingTop='10px' 
@@ -33,7 +44,7 @@ function ItemCounter() {
                         fontWeight: 600,
                         fontSize: '26px',
                         lineHeight: '24px',
-                    }}>1</Typography>
+                    }}>{count}</Typography>
         </Grid>
         <Grid item>
             <Button variant='outlined' sx={{
@@ -52,7 +63,7 @@ function ItemCounter() {
                     backgroundColor: "white",
                     color: 'black',
                 },
-            }}><Typography>+</Typography></Button>
+            }} onClick={handleIncrease}><Typography>+</Typography></Button>
         </Grid>
     </Grid>
   )

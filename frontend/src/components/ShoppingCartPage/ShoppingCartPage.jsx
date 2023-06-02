@@ -15,6 +15,7 @@ const array = [{title : "Fossil Leather Watch", price: "6873"},
 
 function ShoppingCartPage() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
   return (
     <Box sx={{
         backgroundColor: "#171A25",
@@ -35,7 +36,7 @@ function ShoppingCartPage() {
           </Grid>
         ))}
         </Grid>
-        <CartSum />
+        <CartSum items={array} />
         <CheckoutBtn />
         <Footer />
     </Box>

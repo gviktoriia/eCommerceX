@@ -1,7 +1,8 @@
 import { Typography } from '@mui/material'
 import React from 'react'
 
-function CartSum(props) {
+function CartSum({ items }) {
+  const totalSum = items.reduce((sum, item) => sum + parseInt(item.price), 0);
   return (
     <Typography sx={{
         color: 'white',
@@ -12,7 +13,7 @@ function CartSum(props) {
         textAlign: 'center',
         fontSize: '24px',
         lineHeight: '29px',
-    }}>Сума замовлення $сума$ грн</Typography>
+    }}>Сума замовлення {totalSum} грн</Typography>
   )
 }
 

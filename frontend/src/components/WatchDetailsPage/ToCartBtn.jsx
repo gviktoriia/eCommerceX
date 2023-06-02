@@ -19,7 +19,7 @@ function ToCartBtn() {
             backgroundColor: "white",
             color: 'black',
         },
-    }}>
+    }} >
         Додати в кошик
     </Button>
   )
