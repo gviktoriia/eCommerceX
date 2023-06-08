@@ -1,10 +1,36 @@
 import WatchDetails from "./WatchDetails.js";
 import WatchService from "./WatchService.js";
+import fs from 'fs'
 
 class WatchController {
     async create(req,res) {
         try {
-            const watch = await WatchService.create(req.body)
+            if (req.file === undefined) return res.send("you must select a file.");
+            const imgUrl = `http://localhost:8888/file/${req.file.filename}`;
+            
+            // // const obj = {
+            // //     img: {
+            // //         data: fs.readFileSync(path.join(__dirname + "/uploads/" + req.file.filename + Date.now())),
+            // //         contentType: "image/png"
+            // //     }
+            // // }
+            // console.log(req.body)
+            // console.log(req.file)
+            // //console.log(obj.img)
+            const uploadObject = {
+                name: req.body.name,
+                manufacturer: req.body.manufacturer,
+                sex: req.body.sex,
+                material: req.body.material,
+                style:req.body.style,
+                price:req.body.price,
+                quantity:req.body.quantity,
+                image:imgUrl,
+                description: req.body.description
+            }
+            console.log(uploadObject)
+            console.log(req.body)
+            const watch = await WatchService.create(uploadObject)
             res.status(200).json(watch);
         } catch (e){
             res.status(500).json(e)

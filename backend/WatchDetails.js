@@ -8,10 +8,7 @@ const WatchDetailsSchema = new mongoose.Schema({
     style:{type: String, required: true},
     price:{type: String, required: true},
     quantity:{type: String, required: true},
-    image:{
-        data: Buffer,
-        contentType: String
-    },
+    image:{type: String, required: true},
     description:{type: String, required: true}
 })
 
