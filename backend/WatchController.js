@@ -1,4 +1,4 @@
-import WatchDetails from "./middleware/WatchDetails.js";
+import WatchDetails from "./models/WatchDetails.js";
 import WatchService from "./WatchService.js";
 import fs from 'fs'
 
