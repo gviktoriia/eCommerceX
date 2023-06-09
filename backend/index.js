@@ -2,6 +2,8 @@ import express from 'express'
 import mongoose from 'mongoose'
 import Grid from 'gridfs-stream'
 import router from "./router.js"
+import authRouter from './authRouter.js';
+import roleMiddleware from './middleware/roleMiddleware.js'
 
 const PORT = 8888;
 const DB_URL = 'mongodb+srv://user:user@cluster0.ksqusty.mongodb.net/?retryWrites=true&w=majority';
@@ -9,8 +11,9 @@ const app = express()
 
 app.use(express.json())
 app.use('/api',router)
+app.use('/auth',authRouter)
 
-async function startApp(){
+async function start(){
     try{
         await mongoose.connect(DB_URL, { 
             useNewUrlParser: true,
@@ -22,7 +25,7 @@ async function startApp(){
     }
 }
 
-startApp();
+start();
 
 let gfs;
 
@@ -43,7 +46,9 @@ app.get("/file/:filename", async (req, res) => {
     }
 });
 
-app.delete("/file/:filename", async (req, res) => {
+app.delete("/file/:filename",[
+    roleMiddleware(['ADMIN'])
+    ], async (req, res) => {
     try {
         await gfs.files.deleteOne({ filename: req.params.filename });
         res.send("success");

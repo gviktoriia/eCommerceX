@@ -7,16 +7,6 @@ class WatchController {
         try {
             if (req.file === undefined) return res.send("you must select a file.");
             const imgUrl = `http://localhost:8888/file/${req.file.filename}`;
-            
-            // // const obj = {
-            // //     img: {
-            // //         data: fs.readFileSync(path.join(__dirname + "/uploads/" + req.file.filename + Date.now())),
-            // //         contentType: "image/png"
-            // //     }
-            // // }
-            // console.log(req.body)
-            // console.log(req.file)
-            // //console.log(obj.img)
             const uploadObject = {
                 name: req.body.name,
                 manufacturer: req.body.manufacturer,
@@ -28,8 +18,6 @@ class WatchController {
                 image:imgUrl,
                 description: req.body.description
             }
-            console.log(uploadObject)
-            console.log(req.body)
             const watch = await WatchService.create(uploadObject)
             res.status(200).json(watch);
         } catch (e){
@@ -55,8 +43,26 @@ class WatchController {
     }
     async update(req,res){
         try {
-            const updatedWatch = await WatchService.update(req.body);
-            return res.json(updatedWatch)
+            if (!(req.file === undefined)) {
+                const imgUrl = `http://localhost:8888/file/${req.file.filename}`;
+                const uploadObject = {
+                    _id:req.body._id,
+                    name: req.body.name,
+                    manufacturer: req.body.manufacturer,
+                    sex: req.body.sex,
+                    material: req.body.material,
+                    style:req.body.style,
+                    price:req.body.price,
+                    quantity:req.body.quantity,
+                    image:imgUrl,
+                    description: req.body.description
+                }
+                const updatedWatch = await WatchService.update(uploadObject);
+                return res.json(updatedWatch)
+            } else {
+                const updatedWatch = await WatchService.update(req.body);
+                return res.json(updatedWatch)
+            }
         } catch (e){
             res.status(500).json(e)
         }

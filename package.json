@@ -21,11 +21,13 @@
   },
   "homepage": "https://github.com/KryvOle/eCommerceX#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.18.2",
+    "express-validator": "^7.0.1",
     "fs": "^0.0.1-security",
     "gridfs-stream": "^1.1.1",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^5.13.17",
-    "mongoose-gridfs": "^1.3.0",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^2.0.22"
   }
