@@ -1,4 +1,4 @@
-import WatchDetails from "./WatchDetails.js";
+import WatchDetails from "./middleware/WatchDetails.js";
 
 class WatchService{
     async create(watch) {
