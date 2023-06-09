@@ -24,8 +24,8 @@ Token expires in 1 hour
 admin data: 
 ````
 {
-"login":"admin",
-"password":"admin"
+    "login":"admin",
+    "password":"admin"
 }
 ````
 Add new watch:
@@ -33,15 +33,15 @@ use POST http://localhost:8888/api/watches with form data similar to:
 (don't forget the token)
 ````
 {
-"name": "applewatch5",
-"manufacturer": "apple",
-"sex": "unisex",
-"material": "leather",
-"style": "casual",
-"price": 998.99,
-"quantity": 1000,
-"image": "watch_img.jpg", // needs to be file type
-"description": "best quality",
+    "name": "applewatch5",
+    "manufacturer": "apple",
+    "sex": "unisex",
+    "material": "leather",
+    "style": "casual",
+    "price": 998.99,
+    "quantity": 1000,
+    "image": "watch_img.jpg", // needs to be file type
+    "description": "best quality",
 }
 ````
 Get watches:
