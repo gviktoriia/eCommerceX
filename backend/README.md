@@ -81,17 +81,17 @@ use DELETE with token in header with http://localhost:8888/api/watches/:id
 In database image is saved as a link:
 ````
 {
-"_id":{"$oid":"6483161744401f13db547893"},
-"name":"applewatchTest",
-"manufacturer":"apple",
-"sex":"unisex",
-"material":"leather",
-"style":"casual",
-"price":{"$numberInt":"99899"},
-"quantity":{"$numberInt":"1000"},
-"image":"http://localhost:8888/file/1686311491166-watch-download.jpg",
-"description":"best quality",
-"__v":{"$numberInt":"0"}
+    "_id":{"$oid":"6483161744401f13db547893"},
+    "name":"applewatchTest",
+    "manufacturer":"apple",
+    "sex":"unisex",
+    "material":"leather",
+    "style":"casual",
+    "price":{"$numberInt":"99899"},
+    "quantity":{"$numberInt":"1000"},
+    "image":"http://localhost:8888/file/1686311491166-watch-download.jpg",
+    "description":"best quality",
+    "__v":{"$numberInt":"0"}
 }
 ````
 GET http://localhost:8888/file/1686311491166-watch-download.jpg
