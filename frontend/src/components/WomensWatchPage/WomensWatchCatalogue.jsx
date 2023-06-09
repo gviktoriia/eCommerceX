@@ -1,21 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SortingElement from '../MainPage/MainCatalogue/SortingElement';
 import { Box, Grid, useMediaQuery } from '@mui/material';
 import ItemCard from '../MainPage/MainCatalogue/ItemCard';
 import AdminAddItemBtn from '../MainPage/MainCatalogue/AdminAddItemBtn';
 import AddItemDialog from '../MainPage/MainCatalogue/AddItemDialog';
 
-const array = [{title : "Fossil Leather Watch", price: "6873"},
-                {title : "Fossil Leather Watch", price: "6873"},
-                {title : "Fossil Leather Watch", price: "6873"},
-                {title : "Fossil Leather Watch", price: "6873"},
-                {title : "Fossil Leather Watch", price: "6873"},
-                {title : "Fossil Leather Watch", price: "6873"},
-                {title : "Fossil Leather Watch", price: "6873"},
-                {title : "Fossil Leather Watch", price: "6873"},
-                {title : "Fossil Leather Watch", price: "6873"},];
+// const array = [{title : "Fossil Leather Watch", price: "6873"},
+//                 {title : "Fossil Leather Watch", price: "6873"},
+//                 {title : "Fossil Leather Watch", price: "6873"},
+//                 {title : "Fossil Leather Watch", price: "6873"},
+//                 {title : "Fossil Leather Watch", price: "6873"},
+//                 {title : "Fossil Leather Watch", price: "6873"},
+//                 {title : "Fossil Leather Watch", price: "6873"},
+//                 {title : "Fossil Leather Watch", price: "6873"},
+//                 {title : "Fossil Leather Watch", price: "6873"},];
 
 function WomensWatchCatalogue() {
+  const [watches, setWatches] = useState([{}])
+
+  useEffect(() => {
+    fetch('/api/watches/sex/female').then(
+      response => response.json()
+    ).then(
+      data => {
+        setWatches(data)
+      }
+    )
+  }, [])
+
   const [openAddItemDialog, setOpenAddItemDialog] = useState(false);
   const isScreenSmall = useMediaQuery('(max-width: 600px)');
 
@@ -66,11 +78,12 @@ function WomensWatchCatalogue() {
             alignItems: "center",
             justifyContent: "center"
           }}>
-            {array.map(watch => (
+            {watches.map(watch => (
               <Grid item key={watch.id} xs={12} sm={6} md={4} lg={3.4} xl={2.5}>
                 <ItemCard
-                  image="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
-                  title={watch.title}
+                  id={watch._id}
+                  image={watch.image}
+                  title={watch.name}
                   price={watch.price}
                 />
               </Grid>

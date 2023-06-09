@@ -1,21 +1,34 @@
 import { Box, Grid, useMediaQuery } from '@mui/material'
-import React, { useState } from 'react'
+import React, {useEffect, useState } from 'react'
 import SortingElement from './SortingElement'
 import ItemCard from './ItemCard'
 import AdminAddItemBtn from './AdminAddItemBtn';
 import AddItemDialog from './AddItemDialog';
 
-const array = [{title : "Fossil Leather Watch", price: "6873"},
-                {title : "Fossil Leather Watch", price: "6873"},
-                {title : "Fossil Leather Watch", price: "6873"},
-                {title : "Fossil Leather Watch", price: "6873"},
-                {title : "Fossil Leather Watch", price: "6873"},
-                {title : "Fossil Leather Watch", price: "6873"},
-                {title : "Fossil Leather Watch", price: "6873"},
-                {title : "Fossil Leather Watch", price: "6873"},
-                {title : "Fossil Leather Watch", price: "6873"},];
+
+// const array = [{title : "Fossil Leather Watch", price: "6873"},
+//                 {title : "Fossil Leather Watch", price: "6873"},
+//                 {title : "Fossil Leather Watch", price: "6873"},
+//                 {title : "Fossil Leather Watch", price: "6873"},
+//                 {title : "Fossil Leather Watch", price: "6873"},
+//                 {title : "Fossil Leather Watch", price: "6873"},
+//                 {title : "Fossil Leather Watch", price: "6873"},
+//                 {title : "Fossil Leather Watch", price: "6873"},
+//                 {title : "Fossil Leather Watch", price: "6873"},];
 
 function MainPageCatalogue() {
+  const [watches, setWatches] = useState([{}])
+
+  useEffect(() => {
+    fetch('/api/watches').then(
+      response => response.json()
+    ).then(
+      data => {
+        setWatches(data)
+      }
+    )
+  }, [])
+
   const [openAddItemDialog, setOpenAddItemDialog] = useState(false);
   const isScreenSmall = useMediaQuery('(max-width: 600px)');
 
@@ -63,11 +76,11 @@ function MainPageCatalogue() {
                   alignItems: "center",
                   justifyContent: "center"
                 }}>
-            {array.map(watch => {
+            {watches.map(watch => {
                 return (
                 <Grid item lg={2.5}>
-                    <ItemCard image="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                    title={watch.title} price={watch.price} />
+                    <ItemCard image={watch.image} id={watch._id}
+                    title={watch.name} price={watch.price} />
                 </Grid>);})
             }
         </Grid>    

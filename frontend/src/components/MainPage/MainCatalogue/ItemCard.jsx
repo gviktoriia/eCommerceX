@@ -8,11 +8,10 @@ function ItemCard(props) {
 
     const handleDeleteClick = (e) => {
         e.stopPropagation(); 
-
     };
 
   return (
-    <Link to={details_route} style={{ textDecoration: 'none', color: 'white' }}>
+    <Link to={`/watch-details/${props.id}`} style={{ textDecoration: 'none', color: 'white' }}>
         <Card sx={{ maxWidth: 345, borderRadius:"10px",
                     "&:hover": {
                         opacity: "50%",
