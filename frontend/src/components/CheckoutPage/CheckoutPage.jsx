@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../MainPage/Header/Header'
 import { Box, Button, Grid } from '@mui/material';
 import PageTitle from '../MensWatchPage/PageTitle';
@@ -8,6 +8,17 @@ import NavBar from '../NavBar/NavBar';
 
 function CheckoutPage() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const [cardNumber, setCardNumber] = useState('');
+
+    const handleChange = (event) => {
+        const { value } = event.target;
+        const formattedValue = value
+        .replace(/\s/g, '') 
+        .replace(/(\d{4})(?=\d)/g, '$1 '); 
+
+        setCardNumber(formattedValue);
+    };
+
   return (
     <Box sx={{
         backgroundColor: "#171A25",
@@ -21,7 +32,7 @@ function CheckoutPage() {
         <LoginTextField title="E-mail/Номер телефону" type="text" />
         <LoginTextField title="Населений пункт" type="text" />
         <LoginTextField title="Адреса" type="text" />
-        <LoginTextField title="Номер картки" type="number" />
+        <LoginTextField title="Номер картки" type="text" value={cardNumber} onChange={handleChange} />
         <LoginTextField title="Дата закінчення" type="data" />
         <LoginTextField title="CVV" type="password" />
         <Grid container justifyContent="center">
