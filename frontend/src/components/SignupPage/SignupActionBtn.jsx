@@ -1,12 +1,12 @@
 import { Box, Button } from '@mui/material'
 import React from 'react'
 
-function SignupActionBtn() {
+function SignupActionBtn(props) {
   return (
     <Box sx={{
         textAlign: 'center',
     }}>
-        <Button variant='outlined' sx={{
+        <Button onClick={props.handleClick} variant='outlined' sx={{
             color: "white",
             borderColor: "white",
             fontFamily: "Montserrat",

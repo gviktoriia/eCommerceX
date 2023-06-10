@@ -42,9 +42,7 @@ function LoginPage() {
       if(data.token) navigate(profile_route)
   })
         .catch(error => console.log('error'))
-
-
-}
+  }
   return (
     <Box sx={{
         backgroundColor: "#171A25",
