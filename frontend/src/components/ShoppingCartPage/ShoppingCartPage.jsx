@@ -1,4 +1,4 @@
-import { Box, Grid } from '@mui/material'
+import { Box, Grid, Typography } from '@mui/material'
 import React from 'react'
 import Header from '../MainPage/Header/Header'
 import Footer from '../MainPage/Footer/Footer'
@@ -29,7 +29,18 @@ function ShoppingCartPage() {
         <NavBar menuOpen={isMenuOpen} closeMenu={() => setIsMenuOpen(false)} />
         <PageTitle title="Кошик" />
         <Grid container spacing={2} justifyContent="center">
-        {watches.map((watch, index) => (
+        {watches.length === 0 ? (
+          <Grid item xs={12} marginBottom="10px">
+            <Typography sx={{
+              color: 'white',
+              fontFamily: 'Montserrat',
+              fontSize: '20px',
+              textAlign: 'center',
+              marginTop: '50px',
+              marginBottom: '50px',
+            }}>Ви ще нічого не додали в корзину.</Typography>
+          </Grid>
+        ) : (watches.map((watch, index) => (
           <Grid item key={index} xs={12} marginBottom="10px">
             <ShoppingCartItem
               image={watch.image}
@@ -37,10 +48,15 @@ function ShoppingCartPage() {
               price={watch.price/100}
             />
           </Grid>
-        ))}
+        )))}
         </Grid>
-        <CartSum items={watches} />
-        <CheckoutBtn />
+        {watches.length > 0 && (
+        <>
+          <CartSum items={watches} />
+          <CheckoutBtn />
+        </>
+      )}
+
         <Footer />
     </Box>
   )

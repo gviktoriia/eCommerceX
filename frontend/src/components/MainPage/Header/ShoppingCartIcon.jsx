@@ -11,7 +11,7 @@ function ShoppingCartIcon() {
     itemsInCart = JSON.parse(localStorage.getItem('cart')).bucket.length
 
   } else {
-    itemsInCart = ''
+    itemsInCart = 0
   }
 
   return (
