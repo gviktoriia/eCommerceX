@@ -2,7 +2,7 @@ import { Typography } from '@mui/material'
 import React from 'react'
 
 function CartSum({ items }) {
-  const totalSum = items.reduce((sum, item) => sum + parseInt(item.price), 0);
+  const totalSum = (items.reduce((sum, item) => sum + parseInt(item.price), 0))/100;
   return (
     <Typography sx={{
         color: 'white',

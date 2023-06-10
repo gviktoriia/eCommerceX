@@ -8,10 +8,10 @@ import CartSum from './CartSum'
 import CheckoutBtn from './CheckoutBtn'
 import NavBar from '../NavBar/NavBar'
 
-const array = [{title : "Fossil Leather Watch", price: "6873"},
-                {title : "Fossil Leather Watch", price: "6873"},
-                {title : "Fossil Leather Watch", price: "6873"},
-                {title : "Fossil Leather Watch", price: "6873"},];
+// const array = [{title : "Fossil Leather Watch", price: "6873"},
+//                 {title : "Fossil Leather Watch", price: "6873"},
+//                 {title : "Fossil Leather Watch", price: "6873"},
+//                 {title : "Fossil Leather Watch", price: "6873"},];
 
 function ShoppingCartPage() {
   const watches = JSON.parse(localStorage.getItem('cart')).bucket
@@ -33,12 +33,12 @@ function ShoppingCartPage() {
             <ShoppingCartItem
               image={watch.image}
               title={watch.name}
-              price={watch.price}
+              price={watch.price/100}
             />
           </Grid>
         ))}
         </Grid>
-        <CartSum items={array} />
+        <CartSum items={watches} />
         <CheckoutBtn />
         <Footer />
     </Box>
