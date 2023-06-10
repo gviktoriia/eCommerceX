@@ -10,7 +10,7 @@ function LoginTextField(props) {
         <TextField id="outlined-basic" variant="outlined"  label={props.title} 
         type={props.type}
         value={props.value}
-        onChange={handleTextChange && props.onChange}
+        onChange={handleTextChange}
         sx={{ border: "1px solid #4D4D4D",
         borderRadius: "10px", 
         width: { xs: 210, sm: 390, md: 420, xl: 450 },
