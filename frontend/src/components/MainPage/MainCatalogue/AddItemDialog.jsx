@@ -11,57 +11,64 @@ function AddItemDialog({ open, onClose }) {
     const [sex, setSex] = React.useState('');
     const [material, setMaterial] = React.useState('');
     const [style, setStyle] = React.useState('');
+    const [quantity, setQuantity] = React.useState('');
     const [image, setImage] = React.useState(null);
     const [description, setDescription] = React.useState(null);
     const handleName = (text) => {
         setName(text)
     }
     const handlePrice = (text) => {
-        setName(text)
+        setPrice(text)
     }
     const handleManufacturer = (text) => {
-        setName(text)
+        setManufacturer(text)
     }
-    const handleSex = (text) => {
-        setName(text)
+    const handleSex = (e) => {
+        e.preventDefault()
+        setSex(e.target.value)
     }
     const handleMaterial = (text) => {
-        setName(text)
+        setMaterial(text)
     }
     const handleStyle = (text) => {
-        setName(text)
+        setStyle(text)
     }
-    const handleImage = (text) => {
-        setName(text)
+    const handleQuantity = (text) => {
+        setQuantity(text)
+    }
+    const handleImage = (e) => {
+        e.preventDefault()
+        setImage(e.target.files[0])
     }
     const handleDescription = (text) => {
-        setName(text)
+        setDescription(text)
     }
     
     const handleClick = (e) => {
         e.preventDefault()
+        let formData = new FormData()
+        formData.append('name',name)
+        formData.append('manufacturer',manufacturer)
+        formData.append('sex',sex)
+        formData.append('material',material)
+        formData.append('style',style)
+        formData.append('price',price)
+        formData.append('quantity',quantity)
+        formData.append('image',image)
+        formData.append('description',description)
+
         const url = "http://localhost:8888/api/watches";
+        console.log(`Bearer ${localStorage.getItem('token')}`)
         fetch(url, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                Authorization: `Bearer ${localStorage.getItem('token')}`
             },
-            body: JSON.stringify({
-                name: name,
-                manufacturer: manufacturer,
-                sex:sex,
-                material:material,
-                style:style,
-                price:price,
-                //quantity:quantity,
-                image:image,
-                description:description
-            })
+            body: formData
         }).then(res => {
             return res.json()
         }).then(data => {
-           
+           console.log(data)
         })
             .catch(error => console.log('error'))
     }
@@ -104,9 +111,9 @@ function AddItemDialog({ open, onClose }) {
                     backgroundColor: "#171A25",
                     height: "fit-content",
                 }}>
-                    <LoginTextField title="Назва товару" type="text" />
-                    <LoginTextField title="Ціна" type="text" />
-                    <LoginTextField title="Бренд" type="text" />
+                    <LoginTextField title="Назва товару" type="text" onChange={handleName}/>
+                    <LoginTextField title="Ціна" type="number" onChange={handlePrice}/>
+                    <LoginTextField title="Бренд" type="text" onChange={handleManufacturer}/>
                     <FormControl sx={{ m: 1, minWidth: 120, }}>
                         <InputLabel sx={{
                             fontFamily: 'Montserrat',
@@ -116,7 +123,7 @@ function AddItemDialog({ open, onClose }) {
                             lineHeight: '29px',
                             color: '#4D4D4D'
                         }}>Стать</InputLabel>
-                        <Select labelId="demo-simple-select-helper-label"
+                        <Select onChange={handleSex} labelId="demo-simple-select-helper-label"
                             id="demo-simple-select-helper"
                             label="Стать" sx={{
                                 color: 'white',
@@ -131,20 +138,21 @@ function AddItemDialog({ open, onClose }) {
                                     color: 'white',
                                 },
                             }}>
-                            <MenuItem value={10}>Чоловічі</MenuItem>
-                            <MenuItem value={20}>Жіночі</MenuItem>
-                            <MenuItem value={30}>Універсальні</MenuItem>
+                            <MenuItem value='male'>Чоловічі</MenuItem>
+                            <MenuItem value='female'>Жіночі</MenuItem>
+                            <MenuItem value='unisex'>Універсальні</MenuItem>
                         </Select>
                     </FormControl>
-                    <LoginTextField title="Матеріал корпусу" type="text" />
-                    <LoginTextField title="Стиль" type="text" />
-                    <LoginTextField title="Опис" type="text" />
+                    <LoginTextField title="Матеріал корпусу" type="text" onChange={handleMaterial}/>
+                    <LoginTextField title="Стиль" type="text"onChange={handleStyle} />
+                    <LoginTextField title="Опис" type="text" onChange={handleDescription}/>
+                    <LoginTextField title="Кількість" type="number" onChange={handleQuantity}/>
                     <Grid container direction="row">
                         <Grid item>
                             <AddItemPhoto />
                         </Grid>
                         <Grid item>
-                            <FileUpload />
+                            <FileUpload handleFile={handleImage} />
                         </Grid>
                     </Grid>
                 </Box>

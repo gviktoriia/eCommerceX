@@ -1,7 +1,7 @@
 import { Button, Grid, Input } from '@mui/material'
 import React, { useState } from 'react'
 
-function FileUpload() {
+function FileUpload(props) {
     const [file, setFile] = useState(null);
 
     const handleFile = (e) => {
@@ -11,7 +11,7 @@ function FileUpload() {
   return (
     <Grid container direction='column'>
         <Grid item xs={1} textAlign='center'>
-          <Input type='file' accept="image/*" sx={{color: 'white', marginTop: '30px' }} onChange={handleFile}></Input>
+          <Input type='file' accept="image/*" sx={{color: 'white', marginTop: '30px' }} onChange={props.handleFile}></Input>
         </Grid>
         <Grid item xs={1} textAlign='center' justifyContent='center'>
           <Button sx={{backgroundColor:"white",
