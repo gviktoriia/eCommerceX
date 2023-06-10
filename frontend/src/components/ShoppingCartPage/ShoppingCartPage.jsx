@@ -14,7 +14,8 @@ import NavBar from '../NavBar/NavBar'
 //                 {title : "Fossil Leather Watch", price: "6873"},];
 
 function ShoppingCartPage() {
-  const watches = JSON.parse(localStorage.getItem('cart')).bucket
+  const cart = localStorage.getItem('cart');
+  const watches = cart ? JSON.parse(cart).bucket : [];
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 

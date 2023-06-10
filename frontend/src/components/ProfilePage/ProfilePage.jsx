@@ -8,6 +8,16 @@ import NavBar from '../NavBar/NavBar'
 
 function ProfilePage() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [cardNumber, setCardNumber] = useState('');
+
+  const handleChange = (event) => {
+      const { value } = event.target;
+      const formattedValue = value
+      .replace(/\s/g, '') 
+      .replace(/(\d{4})(?=\d)/g, '$1 '); 
+
+      setCardNumber(formattedValue);
+  };
   
   return (
     <Box sx={{
@@ -22,7 +32,7 @@ function ProfilePage() {
         <LoginTextField title="E-mail/Номер телефону" type="text" />
         <LoginTextField title="Населений пункт" type="text" />
         <LoginTextField title="Адреса" type="text" />
-        <LoginTextField title="Номер картки" type="text" />
+        <LoginTextField title="Номер картки" type="text" value={cardNumber} onChange={handleChange} />
         <Grid container justifyContent='center'>
             <Button variant='outlined' sx={{
             color: "white",
