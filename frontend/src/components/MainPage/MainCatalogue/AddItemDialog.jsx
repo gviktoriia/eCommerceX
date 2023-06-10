@@ -58,7 +58,6 @@ function AddItemDialog({ open, onClose }) {
         formData.append('description',description)
 
         const url = "http://localhost:8888/api/watches";
-        console.log(`Bearer ${localStorage.getItem('token')}`)
         fetch(url, {
             method: 'POST',
             headers: {
