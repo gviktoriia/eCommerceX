@@ -58,6 +58,21 @@ class authController {
             res.status(400).json({message:"Login error"})
         }
     }  
+    async getUserData(req,res){
+        try{
+        //const {token} = req.params
+        //const parsed = this.parseJwt(token)
+        console.log(token)
+        res.status(400).json({message:'hello'})
+        } catch(e){
+            console.log(e)
+            res.status(400).json({message:"get userdata error"})
+        }
+        
+    }
+    // parseJwt (token) {
+    //     return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
+    // }
 }
 
 export default new authController();

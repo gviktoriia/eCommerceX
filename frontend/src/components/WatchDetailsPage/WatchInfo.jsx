@@ -92,7 +92,7 @@ function WatchInfo(props) {
                             }}>Кількість: {props.quantity}</Typography>
                         </Grid>
                         <Grid item>
-                            <ToCartBtn />
+                            <ToCartBtn id={props.id} />
                         </Grid>
                     </Grid>
                 </Grid>

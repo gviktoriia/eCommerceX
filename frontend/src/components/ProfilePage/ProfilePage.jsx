@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState } from 'react'
 import Header from '../MainPage/Header/Header'
 import { Box, Button, Grid } from '@mui/material'
 import PageTitle from '../MensWatchPage/PageTitle'
@@ -8,6 +8,7 @@ import NavBar from '../NavBar/NavBar'
 
 function ProfilePage() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  
   return (
     <Box sx={{
         backgroundColor: "#171A25",

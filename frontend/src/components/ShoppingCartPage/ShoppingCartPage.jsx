@@ -14,6 +14,8 @@ const array = [{title : "Fossil Leather Watch", price: "6873"},
                 {title : "Fossil Leather Watch", price: "6873"},];
 
 function ShoppingCartPage() {
+  const watches = JSON.parse(localStorage.getItem('cart')).bucket
+
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   return (
@@ -26,11 +28,11 @@ function ShoppingCartPage() {
         <NavBar menuOpen={isMenuOpen} closeMenu={() => setIsMenuOpen(false)} />
         <PageTitle title="Кошик" />
         <Grid container spacing={2} justifyContent="center">
-        {array.map((watch, index) => (
+        {watches.map((watch, index) => (
           <Grid item key={index} xs={12} marginBottom="10px">
             <ShoppingCartItem
-              image="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-              title={watch.title}
+              image={watch.image}
+              title={watch.name}
               price={watch.price}
             />
           </Grid>

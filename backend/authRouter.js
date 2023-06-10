@@ -9,5 +9,6 @@ authRouter.post('/registration', [
     check('password', 'Password must be between 5 to 20 characters').isLength(5,20), 
     ], authController.registration)
 authRouter.post('/login',authController.login)
+authRouter.get('/user', authController.getUserData)
 
 export default authRouter;
