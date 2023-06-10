@@ -1,5 +1,6 @@
 import { Button } from '@mui/material'
 import React from 'react'
+import AddToCard from '../ShoppingCartPage/AddToCard';
 
 function ToCartBtn(props) {
   const [newItem, setNewItem] = React.useState({});
@@ -10,22 +11,11 @@ function ToCartBtn(props) {
         setNewItem(data)
       }
     )
-  const addToCart = (e) => {
-    console.log(`http://localhost:8888/api/watches/${props.id}`)
-    console.log(newItem)
-    const inCart = localStorage.getItem('cart')
-    if (!inCart) {
-      const itemList = {bucket:[newItem]}
-      localStorage.setItem('cart', JSON.stringify(itemList))
-    } else {
-      var itemList = JSON.parse(localStorage.getItem('cart'))
-      itemList.bucket.push(newItem)
-      localStorage.setItem('cart', JSON.stringify(itemList))
-    }
-
+  const handleClick = () => {
+    AddToCard(newItem)
   }
   return (
-    <Button onClick={addToCart} variant='outlined' sx={{
+    <Button onClick={handleClick} variant='outlined' sx={{
       color: "white",
       borderColor: "white",
       fontFamily: "Montserrat",
