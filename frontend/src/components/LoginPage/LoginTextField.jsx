@@ -2,11 +2,14 @@ import { Grid, TextField } from '@mui/material'
 import React from 'react'
 
 function LoginTextField(props) {
+  const handleTextChange = (event) => {
+    props.onChange(event.target.value)
+  }
   return (
     <Grid textAlign='center' paddingBottom="40px">
         <TextField id="outlined-basic" variant="outlined"  label={props.title} 
         type={props.type}
-        onChange={props.onChange}
+        onChange={handleTextChange}
         sx={{ border: "1px solid #4D4D4D",
         borderRadius: "10px", 
         width: { xs: 210, sm: 390, md: 420, xl: 450 },

@@ -32,7 +32,7 @@ function WatchDetailsPage() {
         <NavBar menuOpen={isMenuOpen} closeMenu={() => setIsMenuOpen(false)} />
         <WatchInfo image={watches.image}
             title={watches.name}
-            price={watches.price} 
+            price={watches.price/100} 
             brand={watches.manufacturer} 
             gender={watches.sex} 
             material={watches.material} 

@@ -49,7 +49,7 @@ function ItemCard(props) {
                             fontWeight: 200,
                             fontSize: "22px",
                         }}>
-                            {props.price} грн
+                            {props.price/100} грн
                         </Typography>
                     </Grid>
                     <Grid item>

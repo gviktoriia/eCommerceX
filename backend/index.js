@@ -4,11 +4,13 @@ import Grid from 'gridfs-stream'
 import router from "./router.js"
 import authRouter from './authRouter.js';
 import roleMiddleware from './middleware/roleMiddleware.js'
+import cors from 'cors'
 
 const PORT = 8888;
 const DB_URL = 'mongodb+srv://user:user@cluster0.ksqusty.mongodb.net/?retryWrites=true&w=majority';
 const app = express()
 
+app.use(cors())
 app.use(express.json())
 app.use('/api',router)
 app.use('/auth',authRouter)
