@@ -32,10 +32,11 @@ function ItemCard(props) {
                     opacity: "50%",
                 }
             }}>
-                <Link to={home_route}>
                 <div style={{ position: 'relative' }}>
-                    <DeleteIcon style={{ position: 'absolute', top: "20px", right: "20px", color: 'black', background: 'none', zIndex: 1 }}
-                        onClick={handleDeleteClick} />
+                    <Link to={home_route}>
+                        <DeleteIcon style={{ position: 'absolute', top: "20px", right: "20px", color: 'black', background: 'none', zIndex: 1 }}
+                            onClick={handleDeleteClick} />
+                    </Link>
                     <CardMedia
                         component="img"
                         alt="Watch item"
@@ -44,7 +45,7 @@ function ItemCard(props) {
                         image={props.image}
                     />
                 </div>
-                </Link>
+
                 <CardContent sx={{ backgroundColor: "#393939", }}>
                     <Typography gutterBottom paddingTop="16px" paddingBottom="0px" margin="0px" sx={{
                         fontFamily: 'Montserrat',
