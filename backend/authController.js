@@ -63,12 +63,12 @@ class authController {
         try {
             const token = req.headers.authorization.split(' ')[1]
             if (!token) {
-                return res.status(403).json({message: "User is not autorised"})
+                return res.status(403).json({ message: "User is not autorised" })
             }
-            const {id} = jwt.verify(token, secret)
+            const { id } = jwt.verify(token, secret)
             const user = await User.findById(id)
             res.status(200).json({
-                roles:user.roles,
+                roles: user.roles,
                 username: user.username,
                 email: user.email,
                 phoneNumber: user.phoneNumber,
@@ -78,7 +78,33 @@ class authController {
             console.log(e)
             res.status(400).json({ message: "get userdata error" })
         }
-
+    }
+    async updateUser(req, res) {
+        try {
+            const token = req.headers.authorization.split(' ')[1]
+            if (!token) {
+                return res.status(403).json({ message: "User is not autorised" })
+            }
+            const { id } = jwt.verify(token, secret)
+            const newData = req.body
+            // prohibit user set role "admin"
+            const user = await User.findById(id)
+            if(newData.hasOwnProperty("roles") &&
+             (user.roles.indexOf("USER") > -1 && user.roles.indexOf("ADMIN") === -1)){
+                return res.status(403).json({ message: "Forbitten operation" })
+            }
+            const updated = await User.findByIdAndUpdate(id, newData,{new:true})
+            res.status(200).json({
+                roles: updated.roles,
+                username: updated.username,
+                email: updated.email,
+                phoneNumber: updated.phoneNumber,
+                adress: updated.adress
+            })
+        } catch (e) {
+            console.log(e)
+            res.status(400).json({ message: "update error" })
+        }
     }
 }
 
