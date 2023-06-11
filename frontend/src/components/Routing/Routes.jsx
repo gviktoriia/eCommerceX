@@ -8,4 +8,4 @@ export const shopping_route = "/shopping-cart";
 export const details_route = "/watch-details/:id";
 export const checkout_route = "/checkout";
 export const profile_route = "/profile";
-export const admin_details_route = "/admin-watch-details";
+export const admin_details_route = "/admin-watch-details/:id";

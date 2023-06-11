@@ -1,14 +1,32 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material'
-import React from 'react'
+import React, {useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { details_route, home_route } from '../../Routing/Routes'
 import DeleteItemBtn from './DeleteItemBtn'
 
 function ItemCard(props) {
-   
+    const [adminModeLink, setAdminModeLink] = useState('')
+    useEffect(() => {
+        const url = "http://localhost:8888/auth/user";
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        }).then(res => {
+            return res.json()
+        }).then(data => {
+            if (data.roles.indexOf('ADMIN') > -1) {
+                setAdminModeLink('/admin-watch-details/')
+            } else {
+                setAdminModeLink('/watch-details/')
+            }
+        })
+            .catch(error => console.log('error'))
+    }, [])
 
     return (
-        <Link to={`/watch-details/${props.id}`} style={{ textDecoration: 'none', color: 'white' }}>
+        <Link to={`${adminModeLink}${props.id}`} style={{ textDecoration: 'none', color: 'white' }}>
             <Card sx={{
                 maxWidth: 345, borderRadius: "10px",
                 "&:hover": {

@@ -9,14 +9,14 @@ import NavBar from '../NavBar/NavBar'
 function WatchDetailsPage() {
   const {id} = useParams()
 
-  const [watches, setWatches] = useState([{}])
+  const [watch, setWatch] = useState([{}])
 
   useEffect(() => {
     fetch(`/api/watches/${id}`).then(
       response => response.json()
     ).then(
       data => {
-        setWatches(data)
+        setWatch(data)
       }
     )
   }, [])
@@ -32,15 +32,15 @@ function WatchDetailsPage() {
         <NavBar menuOpen={isMenuOpen} closeMenu={() => setIsMenuOpen(false)} />
         <WatchInfo 
             id={id}
-            image={watches.image}
-            title={watches.name}
-            price={watches.price/100} 
-            brand={watches.manufacturer} 
-            gender={watches.sex} 
-            material={watches.material} 
-            style={watches.style} 
-            quantity={watches.quantity}
-            description={watches.description} />
+            image={watch.image}
+            title={watch.name}
+            price={watch.price/100} 
+            brand={watch.manufacturer} 
+            gender={watch.sex} 
+            material={watch.material} 
+            style={watch.style} 
+            quantity={watch.quantity}
+            description={watch.description} />
         <Footer />    
     </Box>
   )
