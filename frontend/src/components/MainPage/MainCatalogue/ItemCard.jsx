@@ -2,27 +2,10 @@ import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } f
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { details_route, home_route } from '../../Routing/Routes'
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteItemBtn from './DeleteItemBtn'
 
 function ItemCard(props) {
-    const navigate = useNavigate()
-    const handleDeleteClick = (e) => {
-        e.stopPropagation();
-        const url = `http://localhost:8888/api/watches/${props.id}`;
-        fetch(url, {
-            method: 'DELETE',
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
-            }
-        }).then(res => {
-            return res.json()
-        }).then(data => {
-            console.log(data)
-            if (data)
-                navigate(home_route)
-        })
-            .catch(error => console.log('error'))
-    };
+   
 
     return (
         <Link to={`/watch-details/${props.id}`} style={{ textDecoration: 'none', color: 'white' }}>
@@ -33,10 +16,11 @@ function ItemCard(props) {
                 }
             }}>
                 <div style={{ position: 'relative' }}>
-                    <Link to={home_route}>
+                    {/* <Link to={home_route}>
                         <DeleteIcon style={{ position: 'absolute', top: "20px", right: "20px", color: 'black', background: 'none', zIndex: 1 }}
                             onClick={handleDeleteClick} />
-                    </Link>
+                    </Link> */}
+                    <DeleteItemBtn id={props.id}></DeleteItemBtn>
                     <CardMedia
                         component="img"
                         alt="Watch item"
