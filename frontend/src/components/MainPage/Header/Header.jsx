@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Menu from './Menu'
 import LoginBtn from './LoginBtn'
 import ShoppingCartIcon from './ShoppingCartIcon'
@@ -7,6 +7,7 @@ import { Grid, IconButton } from '@mui/material'
 import { Dehaze } from "@mui/icons-material";
 import NavBar from '../../NavBar/NavBar'
 import LogoutBtn from './LogoutBtn'
+import ProfileIcon from './ProfileIcon'
 
 function Header({handleMenu}) {
 
@@ -18,6 +19,24 @@ function Header({handleMenu}) {
     }
     window.addEventListener('resize', handleResize);
   }, []);
+
+  const [logined, setLogined] = useState(false)
+  useEffect(() => {
+    const url = "http://localhost:8888/auth/user";
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        }).then(res => {
+            return res.json()
+        }).then(data => {
+           if(data.roles.indexOf('ADMIN') > -1 || data.roles.indexOf('USER') > -1){
+            setLogined(true)
+           } 
+        })
+            .catch(error => setLogined(false))
+  }, [])
 
   return (
     <Grid container spacing={2} justifyContent="center" alignItems="center" 
@@ -63,6 +82,10 @@ function Header({handleMenu}) {
       </Grid>
       <Grid item xs={2} sm={2} md={2} lg={1} container justifyContent={windowWidth >= 1000 ? 'flex-end' : 'center'}>
         <ShoppingCartIcon />
+      </Grid>
+      <Grid item xs={1} sm={2} md={2} lg={1} container justifyContent={windowWidth >= 1000 ? 'flex-end' : 'center'}>
+        {logined && !window.location.href.includes('profile') && 
+        (<ProfileIcon />)}
       </Grid>
     </Grid>
   )
