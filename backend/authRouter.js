@@ -11,4 +11,5 @@ authRouter.post('/registration', [
 authRouter.post('/login',authController.login)
 authRouter.get('/user', authController.getUserData)
 
+
 export default authRouter;

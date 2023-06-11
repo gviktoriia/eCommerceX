@@ -16,6 +16,10 @@ use POST http://localhost:8888/auth/login with body similar to
     "password":"user12346"
 }
 ````
+Get user data by token in headers:
+use GET http://localhost:8888/auth/user
+````
+
 ## !Important!
 Login returns a token which admin needs to put in Headers to access database operations: 
 Authorization      Bearer <token>
