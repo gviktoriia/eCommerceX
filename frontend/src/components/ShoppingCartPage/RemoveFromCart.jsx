@@ -3,13 +3,16 @@ export default function (id) {
     if (!inCart) {
         return
     } else {
-        var itemList = JSON.parse(inCart).bucket
-        for (let i = 0; i < itemList.length; i++) {
-            if (itemList[i]._id === id) {
-                const oneHalf = arrayOfLetters.slice(i)
-                const anotherHalf = arrayOfLetters(i);
-                return  oneHalf.concat(anotherHalf);
-
+        var itemList = JSON.parse(inCart)
+        console.log(itemList.bucket.length)
+        if (itemList.bucket.length === 1 && itemList.bucket[0]._id === id) {
+            localStorage.removeItem('cart')
+            return
+        }
+        for (let i = 0; i < itemList.bucket.length; i++) {
+            if (itemList.bucket[i]._id === id) {
+                localStorage.setItem('cart', JSON.stringify({ bucket: itemList.bucket.splice(i, 1) }))
+                return
             }
         }
     }

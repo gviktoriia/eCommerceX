@@ -43,6 +43,7 @@ function ShoppingCartPage() {
         ) : (watches.map((watch, index) => (
           <Grid item key={index} xs={12} marginBottom="10px">
             <ShoppingCartItem
+              id={watch._id}
               image={watch.image}
               title={watch.name}
               price={watch.price/100}

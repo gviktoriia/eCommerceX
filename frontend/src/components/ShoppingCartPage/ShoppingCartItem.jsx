@@ -57,7 +57,7 @@ function ShoppingCartItem(props) {
           display="flex"
           alignItems={{ xs: 'center', sm: 'inherit' }}
         >
-          <ItemCounter />
+          <ItemCounter id={props.id}/>
         </Grid>
       </Grid>
       <Grid

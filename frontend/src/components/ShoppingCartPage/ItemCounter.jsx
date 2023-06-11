@@ -1,16 +1,26 @@
 import { Button, Grid, Typography } from '@mui/material'
 import React, { useState } from 'react'
+import AddToCart from './AddToCard'
+import RemoveFromCart from './RemoveFromCart'
 
-function ItemCounter() {
+function ItemCounter(props) {
   const [count, setCount] = useState(1);
 
   const handleIncrease = () => {
     setCount(prevCount => prevCount + 1);
+    fetch(`/api/watches/${props.id}`).then(
+      response => response.json()
+    ).then(
+      data => {
+        AddToCart(data)
+      }
+    )
   };
 
   const handleDecrease = () => {
     if (count > 0) {
       setCount(prevCount => prevCount - 1);
+      RemoveFromCart(props.id)
     }
   };
   return (
