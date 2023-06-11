@@ -59,11 +59,7 @@ function Header({handleMenu}) {
         </Grid>
       )}
       <Grid item xs={2} sm={2} md={2} lg={1} container justifyContent={windowWidth >= 1000 ? 'flex-end' : 'center'}>
-        {!window.location.href.includes('login') &&
-        !window.location.href.includes('signup') &&
-        !window.location.href.includes('profile') && (
-          <Grid><LoginBtn /><LogoutBtn /></Grid>
-        )}
+        <Grid><LoginBtn /><LogoutBtn /></Grid>
       </Grid>
       <Grid item xs={2} sm={2} md={2} lg={1} container justifyContent={windowWidth >= 1000 ? 'flex-end' : 'center'}>
         <ShoppingCartIcon />
