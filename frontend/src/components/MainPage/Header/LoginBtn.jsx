@@ -1,9 +1,27 @@
 import { Button } from '@mui/material'
-import React from 'react'
+import React, {useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { login_route } from '../../Routing/Routes'
 
 function LoginBtn() {
+  const [logined, setLogined] = useState(false)
+  useEffect(() => {
+    const url = "http://localhost:8888/auth/user";
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        }).then(res => {
+            return res.json()
+        }).then(data => {
+           if(data.roles.indexOf('ADMIN') > -1 || data.roles.indexOf('USER') > -1){
+            setLogined(true)
+           } 
+        })
+            .catch(error => console.log('error'))
+  }, [])
+  if(logined) return null
   return (
     <Link to={login_route} >
       <Button variant='outlined'

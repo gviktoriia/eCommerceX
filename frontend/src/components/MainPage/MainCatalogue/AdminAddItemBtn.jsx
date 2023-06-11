@@ -7,7 +7,7 @@ function AdminAddItemBtn(props) {
   useEffect(() => {
     const url = "http://localhost:8888/auth/user";
         fetch(url, {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }

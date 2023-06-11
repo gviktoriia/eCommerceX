@@ -17,7 +17,7 @@ function AdminWatchDetailsPage() {
     ).then(
       data => {
         setWatch(data)
-        console.log(data)
+        //console.log(data)
       }
     )
   }, [])

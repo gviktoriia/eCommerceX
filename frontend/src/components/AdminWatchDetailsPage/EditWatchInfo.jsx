@@ -5,6 +5,7 @@ import AddItemPhoto from '../MainPage/MainCatalogue/AddItemPhoto';
 import FileUpload from '../MainPage/MainCatalogue/FileUpload';
 
 function EditWatchInfo(props) {
+  // console.log(props)
     const [name, setName] = React.useState(props.title);
     const [isNameFocused, setIsNameFocused] = React.useState(false);
 

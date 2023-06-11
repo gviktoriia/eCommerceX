@@ -6,6 +6,7 @@ import SearchBar from './SearchBar'
 import { Grid, IconButton } from '@mui/material'
 import { Dehaze } from "@mui/icons-material";
 import NavBar from '../../NavBar/NavBar'
+import LogoutBtn from './LogoutBtn'
 
 function Header({handleMenu}) {
 
@@ -61,7 +62,7 @@ function Header({handleMenu}) {
         {!window.location.href.includes('login') &&
         !window.location.href.includes('signup') &&
         !window.location.href.includes('profile') && (
-          <LoginBtn />
+          <Grid><LoginBtn /><LogoutBtn /></Grid>
         )}
       </Grid>
       <Grid item xs={2} sm={2} md={2} lg={1} container justifyContent={windowWidth >= 1000 ? 'flex-end' : 'center'}>
