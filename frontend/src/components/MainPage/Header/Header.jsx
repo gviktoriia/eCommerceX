@@ -42,7 +42,7 @@ function Header({handleMenu}) {
     <Grid container spacing={2} justifyContent="center" alignItems="center" 
           paddingTop={{ xs: '20px', sm: '30px', md: '36px' }}
           paddingBottom={{ xs: '30px', sm: '36px', md: '40px' }}>
-      <Grid item xs={3} sm={3} md={2} lg={5} container justifyContent={windowWidth >= 1000 ? 'flex-start' : 'center'}>
+      <Grid item xs={2} sm={3} md={2} lg={5} container justifyContent={windowWidth >= 1000 ? 'flex-start' : 'center'}>
         {windowWidth >= 1200 && (
           <Grid item>
             <Menu />
