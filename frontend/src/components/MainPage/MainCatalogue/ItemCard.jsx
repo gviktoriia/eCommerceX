@@ -22,7 +22,7 @@ function ItemCard(props) {
                 setAdminModeLink('/watch-details/')
             }
         })
-            .catch(error => console.log('error'))
+            .catch(error => {setAdminModeLink('/watch-details/')})
     }, [])
 
     return (

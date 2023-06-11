@@ -19,7 +19,7 @@ function LoginBtn() {
             setLogined(true)
            } 
         })
-            .catch(error => console.log('error'))
+            .catch(error => setLogined(false))
   }, [])
   if(logined) return null
   return (

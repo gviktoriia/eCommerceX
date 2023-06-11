@@ -19,7 +19,7 @@ function LogoutBtn() {
                 setLogined(true)
             }
         })
-            .catch(error => console.log('error'))
+            .catch(error => setLogined(false))
     }, [])
 
     const handleClick = (e) => {

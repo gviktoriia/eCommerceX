@@ -1,9 +1,9 @@
 import { Button } from '@mui/material'
 import React from 'react'
 
-function SaveEditionBtn() {
+function SaveEditionBtn(props) {
   return (
-    <Button variant='outlined' sx={{
+    <Button onClick={props.onClick} variant='outlined' sx={{
         color: "white",
         borderColor: "White",
         fontFamily: "Montserrat",

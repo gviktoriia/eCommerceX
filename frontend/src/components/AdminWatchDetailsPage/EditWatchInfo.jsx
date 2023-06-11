@@ -30,6 +30,42 @@ function EditWatchInfo(props) {
     const [description, setDescription] = React.useState(props.description);
     const [isDescriptionFocused, setIsDescriptionFocused] = React.useState(false);
 
+    const [image, setImage] = React.useState(null);
+    const handleImage = (e) => {
+      e.preventDefault()
+      setImage(e.target.files[0])
+  }
+
+    const handleClick = (e) => {
+      e.preventDefault()
+      let formData = new FormData()
+      formData.append('_id',props.id)
+      formData.append('name',name)
+      formData.append('manufacturer',brand)
+      formData.append('sex',gender)
+      formData.append('material',material)
+      formData.append('style',style)
+      formData.append('price',price)
+      formData.append('quantity',quantity)
+      formData.append('image',image)
+      formData.append('description',description)
+      console.log(name)
+
+      const url = "http://localhost:8888/api/watches";
+      fetch(url, {
+          method: 'PUT',
+          headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`
+          },
+          body: formData
+      }).then(res => {
+          return res.json()
+      }).then(data => {
+         console.log(data)
+      })
+          .catch(error => console.log('error'))
+  }
+
   return (
     <Grid container paddingTop={{ xs: '20px', sm: '30px', md: '44px' }} justifyContent='center' margin='0'  >
         <Grid item>
@@ -300,7 +336,7 @@ function EditWatchInfo(props) {
                                 </TextField>)}
                         </Grid>
                         <Grid item>
-                            <FileUpload />
+                            <FileUpload handleFile={handleImage}/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -346,7 +382,7 @@ function EditWatchInfo(props) {
                 </TextField>)}
             </Grid>
             <Grid item justifyContent='center' display='flex' >
-                <SaveEditionBtn />
+                <SaveEditionBtn onClick={handleClick}/>
             </Grid>
         </Grid>
     </Grid>

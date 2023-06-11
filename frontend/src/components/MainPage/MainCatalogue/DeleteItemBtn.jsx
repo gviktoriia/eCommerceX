@@ -40,7 +40,7 @@ function DeleteItemBtn(props) {
                 setAdminMode(false)
             }
         })
-            .catch(error => console.log('error'))
+            .catch(error => setAdminMode(false))
     }, [])
     if (!adminMode) return null
     return (
