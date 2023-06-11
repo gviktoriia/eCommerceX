@@ -10,6 +10,7 @@ function AdminWatchDetailsPage() {
   const { id } = useParams()
 
   const [watch, setWatch] = useState({})
+  const [adminMode, setAdminMode] = useState(false)
 
   useEffect(() => {
     fetch(`/api/watches/${id}`).then(
@@ -20,10 +21,27 @@ function AdminWatchDetailsPage() {
         //console.log(data)
       }
     )
+    const url = "http://localhost:8888/auth/user";
+      fetch(url, {
+          method: 'GET',
+          headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+      }).then(res => {
+          return res.json()
+      }).then(data => {
+          if (data.roles.indexOf('ADMIN') > -1) {
+              setAdminMode(true)
+          } else {
+              setAdminMode(false)
+          }
+      })
+          .catch(error => console.log('error'))
   }, [])
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
+  
+  if (!adminMode) return null
   return (
     <Box sx={{
       backgroundColor: "#171A25",
