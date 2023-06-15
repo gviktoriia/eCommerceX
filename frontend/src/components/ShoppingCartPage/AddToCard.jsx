@@ -8,5 +8,5 @@ export default function (newItem) {
     itemList.bucket.push(newItem)
     localStorage.setItem('cart', JSON.stringify(itemList))
   }
-
+  window.location.reload();
 }

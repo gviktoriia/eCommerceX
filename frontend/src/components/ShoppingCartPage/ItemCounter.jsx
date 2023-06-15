@@ -20,6 +20,7 @@ function ItemCounter(props) {
   const handleDecrease = () => {
     if (count > 0) {
       setCount(prevCount => prevCount - 1);
+      console.log(props.id)
       RemoveFromCart(props.id)
     }
   };
@@ -54,7 +55,7 @@ function ItemCounter(props) {
                         fontWeight: 600,
                         fontSize: '26px',
                         lineHeight: '24px',
-                    }}>{count}</Typography>
+                    }}>{props.quantity}</Typography>
         </Grid>
         <Grid item>
             <Button variant='outlined' sx={{
