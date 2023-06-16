@@ -10,14 +10,72 @@ function CheckoutPage() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const [cardNumber, setCardNumber] = useState('');
 
-    const handleChange = (event) => {
-        const { value } = event.target;
+    const [name, setName] = React.useState('');
+    const [email, setEmail] = React.useState('');
+    const [phoneNumber, setPhoneNumber] = React.useState('');
+    const [adress, setAdress] = React.useState('');
+    const [endDate, setEndDate] = React.useState('');
+    const [cvv, setCVV] = React.useState('');
+    const handleName = (val) => {
+        setName(val)
+    }
+    const handleEmail = (val) => {
+        setEmail(val)
+    }
+    const handlePhoneNumber = (val) => {
+        setPhoneNumber(val)
+    }
+    const handleAdress = (val) => {
+        setAdress(val)
+    }
+    const handleEndDate = (val) => {
+        setEndDate(val)
+    }
+    const handleCVV = (val) => {
+        setCVV(val)
+    }
+    const handleChange = (value) => {
+        //const { value } = event.target;
         const formattedValue = value
         .replace(/\s/g, '') 
         .replace(/(\d{4})(?=\d)/g, '$1 '); 
 
         setCardNumber(formattedValue);
-    };
+    }
+    const handleClick = (e) => {
+        // buy 
+        console.log(name)
+        console.log(email)
+        console.log(phoneNumber)
+        console.log(adress)
+        console.log(cardNumber)
+        console.log(cvv)
+        console.log(endDate)
+        e.preventDefault()
+        const url = "http://localhost:8888/checkout/buy";
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+                username: name,
+                email:email,
+                phoneNumber:phoneNumber,
+                adress:adress,
+                cardNumber:cardNumber,
+                endDate:endDate,
+                cvv:cvv,
+                items:JSON.parse(localStorage.getItem('cart')).bucket
+            })
+        }).then(res => {
+            return res.json()
+        }).then(data => {
+          console.log(data)
+      })
+            .catch(error => console.log('error'))
+    }
 
   return (
     <Box sx={{
@@ -28,15 +86,16 @@ function CheckoutPage() {
         <Header handleMenu={() => setIsMenuOpen(true)} />
         <NavBar menuOpen={isMenuOpen} closeMenu={() => setIsMenuOpen(false)} />
         <PageTitle title="Оформлення замовлення" />
-        <LoginTextField title="ПІБ" type="text" />
-        <LoginTextField title="E-mail/Номер телефону" type="text" />
-        <LoginTextField title="Населений пункт" type="text" />
-        <LoginTextField title="Адреса" type="text" />
+        <LoginTextField title="ПІБ" type="text" onChange={handleName}/>
+        <LoginTextField title="E-mail" type="text" onChange={handleEmail}/>
+        <LoginTextField title="Номер телефону" type="text" onChange={handlePhoneNumber}/>
+        {/* <LoginTextField title="Населений пункт" type="text" /> */}
+        <LoginTextField title="Адреса" type="text" onChange={handleAdress}/>
         <LoginTextField title="Номер картки" type="text" value={cardNumber} onChange={handleChange} />
-        <LoginTextField title="Дата закінчення" type="data" />
-        <LoginTextField title="CVV" type="password" />
+        <LoginTextField title="Дата закінчення" type="data" onChange={handleEndDate}/>
+        <LoginTextField title="CVV" type="password" onChange={handleCVV}/>
         <Grid container justifyContent="center">
-            <Button variant='outlined' sx={{
+            <Button onClick={handleClick} variant='outlined' sx={{
                 color: "white",
                 borderColor: "white",
                 fontFamily: "Montserrat",

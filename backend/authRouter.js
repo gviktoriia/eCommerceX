@@ -10,6 +10,7 @@ authRouter.post('/registration', [
     check('password', 'Password must be between 5 to 20 characters').isLength(5, 20),
 ], authController.registration)
 authRouter.post('/login', authController.login)
+authRouter.post('/guest', authController.guestRegistration)
 authRouter.get('/user', authController.getUserData)
 authRouter.post('/user', [
     roleMiddleware(['ADMIN','USER'])

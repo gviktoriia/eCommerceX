@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs'
 import { validationResult } from 'express-validator'
 import jwt from 'jsonwebtoken'
 import secret from './config.js'
+import Guest from './models/Guest.js'
 
 const generateAccessToken = (id, roles) => {
     const payload = {
@@ -14,6 +15,7 @@ const generateAccessToken = (id, roles) => {
 }
 
 class authController {
+    // maybe check if user with this email exists
     async registration(req, res) {
         try {
             const errors = validationResult(req)
@@ -89,11 +91,11 @@ class authController {
             const newData = req.body
             // prohibit user set role "admin"
             const user = await User.findById(id)
-            if(newData.hasOwnProperty("roles") &&
-             (user.roles.indexOf("USER") > -1 && user.roles.indexOf("ADMIN") === -1)){
+            if (newData.hasOwnProperty("roles") &&
+                (user.roles.indexOf("USER") > -1 && user.roles.indexOf("ADMIN") === -1)) {
                 return res.status(403).json({ message: "Forbitten operation" })
             }
-            const updated = await User.findByIdAndUpdate(id, newData,{new:true})
+            const updated = await User.findByIdAndUpdate(id, newData, { new: true })
             res.status(200).json({
                 roles: updated.roles,
                 username: updated.username,
@@ -104,6 +106,26 @@ class authController {
         } catch (e) {
             console.log(e)
             res.status(400).json({ message: "update error" })
+        }
+    }
+    async guestRegistration(req, res) {
+        try {
+            if (!req.body.email && !req.body.phoneNumber)
+                return res.status(400).json({ message: "Empty email and phone number" })
+
+            const { username, email, phoneNumber, adress } = req.body
+            const guest = new Guest({
+                username,
+                email: email,
+                phoneNumber: phoneNumber,
+                adress:adress
+            })
+            await guest.save()
+            res.status(200).json(guest)
+
+        } catch (error) {
+            console.log(e)
+            res.status(400).json({ message: "guest registration error" })
         }
     }
 }
