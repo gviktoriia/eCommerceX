@@ -4,16 +4,14 @@ import SortingElement from './SortingElement'
 import ItemCard from './ItemCard'
 import AdminAddItemBtn from './AdminAddItemBtn';
 import AddItemDialog from './AddItemDialog';
-import { SearchBarContext } from '../MainPage'
-
-export const SortingContext = React.createContext()
+import { SearchBarContext } from '../Header/SearchBarContext';
 
 function MainPageCatalogue(props) {
 
   const { search, setSearch } = useContext(SearchBarContext)
   const [sorting, setSorting] = useState('');
   const [watches, setWatches] = useState([{}])
-
+  console.log(search)
   useEffect(() => {
     fetch('/api/watches').then(
       response => response.json()
@@ -34,13 +32,13 @@ function MainPageCatalogue(props) {
   const handleCloseDialog = () => {
     setOpenAddItemDialog(false);
   }
-  // expensive first
-  if (sorting === 20) {
+  // cheaper first
+  if (sorting === 10) {
     watches.sort(function (a, b) {
       return a.price - b.price
     })
-    // cheaper first
-  } else if (sorting === 10) {
+    // expensive first
+  } else if (sorting === 20) {
     watches.sort(function (a, b) {
       return b.price - a.price
     })
@@ -50,7 +48,6 @@ function MainPageCatalogue(props) {
       backgroundColor: "#171A25",
       height: "fit-content",
     }}>
-      <SortingContext.Provider value={{ sorting, setSorting }}>
         <Grid container direction={isScreenSmall ? 'column' : 'row'} justifyContent="center" alignItems="center">
           {isScreenSmall ? (
             <>
@@ -58,7 +55,7 @@ function MainPageCatalogue(props) {
                 <AdminAddItemBtn onClick={handleOpenDialog} />
               </Grid>
               <Grid item xs={8} sm={6} md={4} lg={3}>
-                <SortingElement />
+                <SortingElement setSorting={setSorting} />
               </Grid>
             </>
           ) : (
@@ -67,12 +64,11 @@ function MainPageCatalogue(props) {
                 <AdminAddItemBtn onClick={handleOpenDialog} />
               </Grid>
               <Grid item xs={4} sm={6} md={4} lg={3}>
-                <SortingElement />
+                <SortingElement setSorting={setSorting}/>
               </Grid>
             </>
           )}
         </Grid>
-      </SortingContext.Provider>
       <Grid container columnSpacing={4} rowSpacing={5} sx={{
         textAlign: 'center',
         width: "100%",

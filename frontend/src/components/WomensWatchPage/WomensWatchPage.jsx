@@ -1,14 +1,19 @@
 import { Box } from '@mui/material'
-import React from 'react'
+import React, {useState} from 'react'
 import Header from '../MainPage/Header/Header'
 import PageTitle from '../MensWatchPage/PageTitle'
 import Footer from '../MainPage/Footer/Footer'
 import WomensWatchCatalogue from './WomensWatchCatalogue'
 import NavBar from '../NavBar/NavBar'
+import { SearchBarContext } from '../MainPage/Header/SearchBarContext'
 
 function WomensWatchPage() {
+
+  const [search, setSearch] = useState('');
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
   return (
+    <SearchBarContext.Provider value={{ search, setSearch }}>
     <Box sx={{
         backgroundColor: "#171A25",
         height: "fit-content",
@@ -19,6 +24,7 @@ function WomensWatchPage() {
         <WomensWatchCatalogue />
         <Footer />        
     </Box>
+    </SearchBarContext.Provider>
   )
 }
 

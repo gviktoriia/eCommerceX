@@ -4,13 +4,11 @@ import MainPageCatalogue from './MainCatalogue/MainPageCatalogue'
 import Footer from './Footer/Footer'
 import { Box } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-
-export const SearchBarContext = React.createContext()
+import { SearchBarContext } from './Header/SearchBarContext'
 
 function MainPage() {
 
   const [search, setSearch] = useState('');
-  
   return (
     <SearchBarContext.Provider value={{search, setSearch}}>
       <Box sx={{

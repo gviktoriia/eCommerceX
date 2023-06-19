@@ -5,17 +5,6 @@ import ItemCard from '../MainPage/MainCatalogue/ItemCard';
 import AdminAddItemBtn from '../MainPage/MainCatalogue/AdminAddItemBtn';
 import AddItemDialog from '../MainPage/MainCatalogue/AddItemDialog';
 
-
-// const array = [{title : "Fossil Leather Watch", price: "6873"},
-//                 {title : "Fossil Leather Watch", price: "6873"},
-//                 {title : "Fossil Leather Watch", price: "6873"},
-//                 {title : "Fossil Leather Watch", price: "6873"},
-//                 {title : "Fossil Leather Watch", price: "6873"},
-//                 {title : "Fossil Leather Watch", price: "6873"},
-//                 {title : "Fossil Leather Watch", price: "6873"},
-//                 {title : "Fossil Leather Watch", price: "6873"},
-//                 {title : "Fossil Leather Watch", price: "6873"},];
-
 function MensWatchCatalogue() {
 
   const [watches, setWatches] = useState([{}])

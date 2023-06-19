@@ -1,6 +1,6 @@
 import { Input } from '@mui/material'
 import React, { useState, useContext } from 'react'
-import {SearchBarContext} from '../MainPage'
+import { SearchBarContext } from './SearchBarContext'
 
 function SearchBar() {
 
