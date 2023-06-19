@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Menu from './Menu'
 import LoginBtn from './LoginBtn'
 import ShoppingCartIcon from './ShoppingCartIcon'

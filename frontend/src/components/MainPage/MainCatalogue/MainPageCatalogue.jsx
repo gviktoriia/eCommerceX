@@ -1,14 +1,17 @@
 import { Box, Grid, useMediaQuery } from '@mui/material'
-import React, {useEffect, useState, createContext  } from 'react'
+import React, {useEffect, useState, useContext, createContext  } from 'react'
 import SortingElement from './SortingElement'
 import ItemCard from './ItemCard'
 import AdminAddItemBtn from './AdminAddItemBtn';
 import AddItemDialog from './AddItemDialog';
-
+import {SearchBarContext} from '../MainPage'
 
 function MainPageCatalogue(props) {
-  //const [adminMode, setAdminMode] = useState(false)
-  //const { setAdminMode } = useContext(adminMode)
+
+  // const { value } = useContext(SearchBarContext)
+  // console.log(value)
+  const {search, setSearch} = useContext(SearchBarContext)
+
   const [watches, setWatches] = useState([{}])
 
   useEffect(() => {
@@ -17,7 +20,6 @@ function MainPageCatalogue(props) {
     ).then(
       data => {
         setWatches(data)
-        //setAdminMode(props.role === 'ADMIN')
       }
     )
   }, [])
@@ -32,7 +34,6 @@ function MainPageCatalogue(props) {
   const handleCloseDialog = () => {
     setOpenAddItemDialog(false);
   }
-  // console.log(adminMode)
   return (
     <Box sx={{
         backgroundColor: "#171A25",

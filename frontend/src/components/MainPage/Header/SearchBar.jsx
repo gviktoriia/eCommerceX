@@ -1,18 +1,25 @@
 import { Input } from '@mui/material'
-import React from 'react'
-
+import React, { useState, useContext } from 'react'
+import {SearchBarContext} from '../MainPage'
 
 function SearchBar() {
+
+  const {search, setSearch} = useContext(SearchBarContext)
+
+  const handleChange = (event) => {
+    setSearch(event.target.value)
+  }
   return (
-    <Input variant='standard'
-      placeholder="Шукати..."
-      sx={{fontFamily: 'Montserrat',
+      <Input onChange={handleChange} variant='standard'
+        placeholder="Шукати..."
+        sx={{
+          fontFamily: 'Montserrat',
           fontStyle: 'normal',
           fontWeight: 200,
           fontSize: "20px",
           color: "white",
           width: '180px',
-      }} />
+        }} />
   )
 }
 
