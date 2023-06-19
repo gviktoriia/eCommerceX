@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from '../MainPage/Header/Header'
 import { Box, Button, Grid } from '@mui/material';
 import PageTitle from '../MensWatchPage/PageTitle';
@@ -7,6 +7,29 @@ import LoginTextField from '../LoginPage/LoginTextField';
 import NavBar from '../NavBar/NavBar';
 
 function CheckoutPage() {
+    //const [logined, setLogined] = useState(false)
+    useEffect(() => {
+        const url = "http://localhost:8888/auth/user";
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            }).then(res => {
+                return res.json()
+            }).then(data => {
+               if(data.roles.indexOf('ADMIN') > -1 || data.roles.indexOf('USER') > -1){
+                    console.log(data)
+                    setName(data.username)
+                    setEmail(data.email || '')
+                    setPhoneNumber(data.phoneNumber || '')
+                    setAdress(data.adress || '')
+                    setCardNumber(data.cardNumber || '')
+                    console.log(data.cardNumber)
+               } 
+            })
+                .catch(error => console.log('not registered'))
+      }, [])
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const [cardNumber, setCardNumber] = useState('');
 
@@ -79,11 +102,11 @@ function CheckoutPage() {
         <Header handleMenu={() => setIsMenuOpen(true)} />
         <NavBar menuOpen={isMenuOpen} closeMenu={() => setIsMenuOpen(false)} />
         <PageTitle title="Оформлення замовлення" />
-        <LoginTextField title="ПІБ" type="text" onChange={handleName}/>
-        <LoginTextField title="E-mail" type="text" onChange={handleEmail}/>
-        <LoginTextField title="Номер телефону" type="text" onChange={handlePhoneNumber}/>
+        <LoginTextField title="ПІБ" type="text" value={name} onChange={handleName}/>
+        <LoginTextField title="E-mail" type="text" value={email} onChange={handleEmail}/>
+        <LoginTextField title="Номер телефону" type="text" value={phoneNumber} onChange={handlePhoneNumber}/>
         {/* <LoginTextField title="Населений пункт" type="text" /> */}
-        <LoginTextField title="Адреса" type="text" onChange={handleAdress}/>
+        <LoginTextField title="Адреса" type="text" value={adress} onChange={handleAdress}/>
         <LoginTextField title="Номер картки" type="text" value={cardNumber} onChange={handleChange} />
         <LoginTextField title="Дата закінчення" type="data" onChange={handleEndDate}/>
         <LoginTextField title="CVV" type="password" onChange={handleCVV}/>

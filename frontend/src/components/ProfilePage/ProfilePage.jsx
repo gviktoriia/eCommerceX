@@ -37,6 +37,7 @@ function ProfilePage() {
     };
     const handleClick = (e) => {
         e.preventDefault()
+        console.log(cardNumber)
         const url = "http://localhost:8888/auth/user";
         fetch(url, {
             method: 'POST',
@@ -49,7 +50,7 @@ function ProfilePage() {
                 email:email,
                 adress:adress,
                 phoneNumber:phoneNumber,
-                cartNumber:cardNumber
+                cardNumber:cardNumber
             })
         }).then(res => {
             return res.json()

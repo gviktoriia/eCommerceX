@@ -74,7 +74,8 @@ class authController {
                 username: user.username,
                 email: user.email,
                 phoneNumber: user.phoneNumber,
-                adress: user.adress
+                adress: user.adress,
+                cardNumber:user.cardNumber
             })
         } catch (e) {
             console.log(e)
@@ -95,13 +96,15 @@ class authController {
                 (user.roles.indexOf("USER") > -1 && user.roles.indexOf("ADMIN") === -1)) {
                 return res.status(403).json({ message: "Forbitten operation" })
             }
+            console.log(req.body)
             const updated = await User.findByIdAndUpdate(id, newData, { new: true })
             res.status(200).json({
                 roles: updated.roles,
                 username: updated.username,
                 email: updated.email,
                 phoneNumber: updated.phoneNumber,
-                adress: updated.adress
+                adress: updated.adress,
+                cardNumber:updated.cardNumber
             })
         } catch (e) {
             console.log(e)
