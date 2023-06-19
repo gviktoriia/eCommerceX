@@ -2,30 +2,39 @@ import secret from './config.js';
 import jwt from 'jsonwebtoken'
 import Guest from './models/Guest.js';
 import Receipt from './models/Receipt.js';
+import WatchService from './WatchService.js';
 
-class CheckoutController{
-    async buy(req,res){
+class CheckoutController {
+    async buy(req, res) {
         try {
-            // ?check end date, card number, cvv?
-            // check item quantity - if not enough - return error
-            // check header if it is user
-            // if not - register guest
-            // create receipt and update quantity of items, return 200
-    
+            // check end date, card number, cvv, email, phone number, name and adress
+            if (req.body.username === '' || req.body.adress === '' ||
+                req.body.cardNumber === '' || req.body.endDate === '' ||
+                req.body.cvv === '' ||
+                (req.body.email === '' && req.body.phoneNumber === '')) {
+                res.status(400).json({ message: "not filled nessessary fields" })
+                return
+            }
+
+
             const watches = req.body.items
-            // watch id = key to watch quantity
+            // watch id is a key to watch quantity
+            let uniqueIds = []
             let idQuantity = {}
             for (let i = 0; i < watches.length; i++) {
                 if (watches[i]._id in idQuantity) {
                     idQuantity[watches[i]._id]++
                 } else {
                     idQuantity[watches[i]._id] = 1
+                    uniqueIds.push(watches[i]._id)
                 }
             }
             for (let i = 0; i < watches.length; i++) {
-                if (watches[i].quantity < idQuantity[watches[i]._id]) {
-                    res.status(400).json({ message: "error" })
-                    console.log('error')
+                const watch = await WatchService.getById(watches[i]._id)
+                if (watch.quantity < idQuantity[watches[i]._id]) {
+                    res.status(400).json({ message: "not enouth items in stock" })
+                    return
+                    //console.log('error')
                 }
             }
             // check header if it is user
@@ -33,39 +42,45 @@ class CheckoutController{
             try {
                 const token = req.headers.authorization.split(' ')[1]
                 const { id } = jwt.verify(token, secret)
-                console.log(id)
                 userId = id
             } catch (e) {
-                console.log('register guest')
+                // save as a guest
                 const guest = new Guest({
-                    username:req.body.username,
+                    username: req.body.username,
                     email: req.body.email,
                     phoneNumber: req.body.phoneNumber,
-                    adress:req.body.adress
+                    adress: req.body.adress
                 })
                 await guest.save()
                 userId = guest._id
             }
-            // console.log(req.body)
-            console.log(userId)
-            // create receipt and update quantity of items, return 200
+            // create receipt
             let sum = 0
-            for(let i = 0; i < watches.length; i++){
+            for (let i = 0; i < watches.length; i++) {
                 sum += watches[i].price
             }
-            console.log(Date())
             const receipt = new Receipt({
                 date: Date(),
                 items: watches,
                 sum: sum,
-                clientID:userId
+                clientID: userId
             })
             await receipt.save()
+            // update quantity of items
+            for (let i = 0; i < uniqueIds.length; i++) {
+                const oldWatch = await WatchService.getById(uniqueIds[i]) 
+                const uploadObject = {
+                    _id: uniqueIds[i],
+                    quantity: oldWatch.quantity - idQuantity[uniqueIds[i]],
+                }
+                const updatedWatch = await WatchService.update(uploadObject);
+                console.log(updatedWatch)
+            }
             res.status(200).json(receipt)
-    
+
         } catch (error) {
             res.status(500).json(error)
-            console.log(error)
+           //console.log(error)
         }
     }
 }

@@ -44,13 +44,6 @@ function CheckoutPage() {
     }
     const handleClick = (e) => {
         // buy 
-        console.log(name)
-        console.log(email)
-        console.log(phoneNumber)
-        console.log(adress)
-        console.log(cardNumber)
-        console.log(cvv)
-        console.log(endDate)
         e.preventDefault()
         const url = "http://localhost:8888/checkout/buy";
         fetch(url, {

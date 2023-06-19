@@ -128,6 +128,16 @@ class authController {
             res.status(400).json({ message: "guest registration error" })
         }
     }
+    async getGuestData(req,res){
+        try {
+            const {id} = req.params
+            const guest = await Guest.findById(id)
+            res.status(200).json(guest)
+        } catch (e) {
+            console.log(e)
+            res.status(400).json({ message: "get userdata error" })
+        }
+    }
 }
 
 export default new authController();

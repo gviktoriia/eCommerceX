@@ -11,6 +11,7 @@ authRouter.post('/registration', [
 ], authController.registration)
 authRouter.post('/login', authController.login)
 authRouter.post('/guest', authController.guestRegistration)
+// authRouter.get('/guest/:id', authController.getGuestData)
 authRouter.get('/user', authController.getUserData)
 authRouter.post('/user', [
     roleMiddleware(['ADMIN','USER'])
