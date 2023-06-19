@@ -1,6 +1,7 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import {makeStyles} from '@mui/styles';
-import React from 'react'
+import React, {useContext} from 'react'
+import {SortingContext} from './MainPageCatalogue'
 
 const useStyles = makeStyles({
   select: {
@@ -14,11 +15,13 @@ const useStyles = makeStyles({
 });
 
 function SelectSortingOption() {
-  const [sort, setSort] = React.useState('');
+  const {sorting, setSorting} = useContext(SortingContext)
+  //const [sort, setSort] = React.useState('');
   const classes = useStyles();
 
   const handleChange = (event) => {
-    setSort(event.target.value);
+    setSorting(event.target.value);
+    console.log(sorting)
   };
   return (
     <div>
@@ -30,7 +33,7 @@ function SelectSortingOption() {
           labelId="demo-simple-select-standard-label"
           id="demo-simple-select-standard"
           className={classes.select}
-          value={sort}
+          value={sorting}
           onChange={handleChange}
           label="Sort"
           sx={{

@@ -1,17 +1,17 @@
 import { Box, Grid, useMediaQuery } from '@mui/material'
-import React, {useEffect, useState, useContext, createContext  } from 'react'
+import React, { useEffect, useState, useContext, createContext } from 'react'
 import SortingElement from './SortingElement'
 import ItemCard from './ItemCard'
 import AdminAddItemBtn from './AdminAddItemBtn';
 import AddItemDialog from './AddItemDialog';
-import {SearchBarContext} from '../MainPage'
+import { SearchBarContext } from '../MainPage'
+
+export const SortingContext = React.createContext()
 
 function MainPageCatalogue(props) {
 
-  // const { value } = useContext(SearchBarContext)
-  // console.log(value)
-  const {search, setSearch} = useContext(SearchBarContext)
-
+  const { search, setSearch } = useContext(SearchBarContext)
+  const [sorting, setSorting] = useState('');
   const [watches, setWatches] = useState([{}])
 
   useEffect(() => {
@@ -34,11 +34,23 @@ function MainPageCatalogue(props) {
   const handleCloseDialog = () => {
     setOpenAddItemDialog(false);
   }
+  // expensive first
+  if (sorting === 20) {
+    watches.sort(function (a, b) {
+      return a.price - b.price
+    })
+    // cheaper first
+  } else if (sorting === 10) {
+    watches.sort(function (a, b) {
+      return b.price - a.price
+    })
+  }
   return (
     <Box sx={{
-        backgroundColor: "#171A25",
-        height: "fit-content",
+      backgroundColor: "#171A25",
+      height: "fit-content",
     }}>
+      <SortingContext.Provider value={{ sorting, setSorting }}>
         <Grid container direction={isScreenSmall ? 'column' : 'row'} justifyContent="center" alignItems="center">
           {isScreenSmall ? (
             <>
@@ -60,25 +72,27 @@ function MainPageCatalogue(props) {
             </>
           )}
         </Grid>
-        <Grid container columnSpacing={4} rowSpacing={5} sx={{
-                  textAlign: 'center',
-                  width: "100%",
-                  paddingBottom: "3%",
-                  paddingTop: "30px",
-                  margin: "0",
-                  direction: "row",
-                  alignItems: "center",
-                  justifyContent: "center"
-                }}>
-            {watches.map(watch => {
-                return (
-                <Grid item lg={2.5}>
-                    <ItemCard image={watch.image} id={watch._id}
-                    title={watch.name} price={watch.price} />
-                </Grid>);})
-            }
-        </Grid>    
-        <AddItemDialog open={openAddItemDialog} onClose={handleCloseDialog} />
+      </SortingContext.Provider>
+      <Grid container columnSpacing={4} rowSpacing={5} sx={{
+        textAlign: 'center',
+        width: "100%",
+        paddingBottom: "3%",
+        paddingTop: "30px",
+        margin: "0",
+        direction: "row",
+        alignItems: "center",
+        justifyContent: "center"
+      }}>
+        {watches.map(watch => {
+          return (
+            <Grid item lg={2.5}>
+              <ItemCard image={watch.image} id={watch._id}
+                title={watch.name} price={watch.price} />
+            </Grid>);
+        })
+        }
+      </Grid>
+      <AddItemDialog open={openAddItemDialog} onClose={handleCloseDialog} />
     </Box>
   )
 }
