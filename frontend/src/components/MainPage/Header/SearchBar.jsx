@@ -1,4 +1,4 @@
-import { Input } from '@mui/material'
+import { Button, Input } from '@mui/material'
 import React, { useState, useContext } from 'react'
 import { SearchBarContext } from './SearchBarContext'
 import SearchIcon from '@mui/icons-material/Search';
@@ -22,7 +22,9 @@ function SearchBar() {
             color: "white",
             width: '180px',
         }} />
-        <SearchIcon style={{ color: 'white', width: '30px', height: '30px',  }}/>
+        <Button>
+          <SearchIcon style={{ color: 'white', width: '30px', height: '30px',  }}/>
+        </Button>
       </>  
   )
 }
