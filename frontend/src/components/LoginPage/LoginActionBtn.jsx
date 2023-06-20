@@ -1,12 +1,12 @@
 import { Box, Button } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { profile_route } from '../Routing/Routes'
+import { home_route } from '../Routing/Routes'
 
 function LoginActionBtn(props) {
 
     return (
-        <Link to={profile_route}>
+        <Link to={home_route}>
             <Box sx={{
                 textAlign: 'center',
             }}>

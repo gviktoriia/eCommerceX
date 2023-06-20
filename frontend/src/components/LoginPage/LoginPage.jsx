@@ -7,7 +7,7 @@ import LoginTextField from './LoginTextField'
 import LoginActionBtn from './LoginActionBtn'
 import SignupInvite from './SignupInvite'
 import Footer from '../MainPage/Footer/Footer'
-import { signup_route } from '../Routing/Routes'
+import { home_route, signup_route } from '../Routing/Routes'
 import { profile_route } from '../Routing/Routes'
 import NavBar from '../NavBar/NavBar'
 
@@ -39,7 +39,7 @@ function LoginPage() {
         return res.json()
     }).then(data => {
       localStorage.setItem('token',data.token)
-      if(data.token) navigate(profile_route)
+      if(data.token) navigate(home_route)
   })
         .catch(error => console.log('error'))
   }

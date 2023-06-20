@@ -5,6 +5,8 @@ import PageTitle from '../MensWatchPage/PageTitle';
 import Footer from '../MainPage/Footer/Footer';
 import LoginTextField from '../LoginPage/LoginTextField';
 import NavBar from '../NavBar/NavBar';
+import { Link, useNavigate } from 'react-router-dom';
+import { home_route } from '../Routing/Routes';
 
 function CheckoutPage() {
     //const [logined, setLogined] = useState(false)
@@ -110,6 +112,7 @@ function CheckoutPage() {
         return selectedDate > today;
     };
 
+    const navigate = useNavigate();
 
     const handleClick = (e) => {
         // buy 
@@ -201,6 +204,7 @@ function CheckoutPage() {
             return res.json()
         }).then(data => {
           console.log(data)
+          navigate(home_route);
       })
             .catch(error => console.log('error'))
     }
@@ -229,22 +233,24 @@ function CheckoutPage() {
         {cvvError && <Typography sx={{textAlign: 'center', color: 'red' }}>{cvvError}</Typography>}
         <LoginTextField title="CVV" type="password" onChange={handleCVV} error={cvvError} />
         <Grid container justifyContent="center">
-            <Button onClick={handleClick} variant='outlined' sx={{
-                color: "white",
-                borderColor: "white",
-                fontFamily: "Montserrat",
-                fontSize: '24px',
-                fontWeight: "600px",
-                textTransform: 'none',
-                lineHeight: '29px',
-                width: '450px',
-                height: '70px',
-                borderRadius: '40px',
-                "&:hover": {
-                    backgroundColor: "white",
-                    color: 'black',
-                },
-            }}>Підтвердити замовлення</Button>
+            <Link to={home_route} >
+                <Button onClick={handleClick} variant='outlined' sx={{
+                    color: "white",
+                    borderColor: "white",
+                    fontFamily: "Montserrat",
+                    fontSize: '24px',
+                    fontWeight: "600px",
+                    textTransform: 'none',
+                    lineHeight: '29px',
+                    width: '450px',
+                    height: '70px',
+                    borderRadius: '40px',
+                    "&:hover": {
+                        backgroundColor: "white",
+                        color: 'black',
+                    },
+                }}>Підтвердити замовлення</Button>
+            </Link>
         </Grid>
         <Footer />
     </Box>
