@@ -5,17 +5,9 @@ import ItemCard from '../MainPage/MainCatalogue/ItemCard';
 import AdminAddItemBtn from '../MainPage/MainCatalogue/AdminAddItemBtn';
 import AddItemDialog from '../MainPage/MainCatalogue/AddItemDialog';
 
-// const array = [{title : "Fossil Leather Watch", price: "6873"},
-//                 {title : "Fossil Leather Watch", price: "6873"},
-//                 {title : "Fossil Leather Watch", price: "6873"},
-//                 {title : "Fossil Leather Watch", price: "6873"},
-//                 {title : "Fossil Leather Watch", price: "6873"},
-//                 {title : "Fossil Leather Watch", price: "6873"},
-//                 {title : "Fossil Leather Watch", price: "6873"},
-//                 {title : "Fossil Leather Watch", price: "6873"},
-//                 {title : "Fossil Leather Watch", price: "6873"},];
-
 function SmartWatchCatalogue() {
+
+  const [sorting, setSorting] = useState('');
   const [watches, setWatches] = useState([{}])
 
   useEffect(() => {
@@ -37,6 +29,18 @@ function SmartWatchCatalogue() {
   const handleCloseDialog = () => {
     setOpenAddItemDialog(false);
   }
+ // cheaper first
+ if (sorting === 10) {
+  watches.sort(function (a, b) {
+    return a.price - b.price
+  })
+  // expensive first
+} else if (sorting === 20) {
+  watches.sort(function (a, b) {
+    return b.price - a.price
+  })
+}
+
   return (
     <Box sx={{
         backgroundColor: "#171A25",
@@ -50,7 +54,7 @@ function SmartWatchCatalogue() {
                 <AdminAddItemBtn onClick={handleOpenDialog} />
               </Grid>
               <Grid item xs={8} sm={6} md={4} lg={3}>
-                <SortingElement />
+                <SortingElement setSorting={setSorting} />
               </Grid>
             </>
           ) : (
@@ -59,7 +63,7 @@ function SmartWatchCatalogue() {
                 <AdminAddItemBtn onClick={handleOpenDialog} />
               </Grid>
               <Grid item xs={4} sm={6} md={4} lg={3}>
-                <SortingElement />
+                <SortingElement setSorting={setSorting} />
               </Grid>
             </>
           )}
