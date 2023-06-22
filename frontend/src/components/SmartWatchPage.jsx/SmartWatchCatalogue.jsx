@@ -17,7 +17,7 @@ function SmartWatchCatalogue() {
       data => {
         setWatches(data)
       }
-    )
+    ).catch(error => console.log('error'))
   }, [])
 
   const [openAddItemDialog, setOpenAddItemDialog] = useState(false);

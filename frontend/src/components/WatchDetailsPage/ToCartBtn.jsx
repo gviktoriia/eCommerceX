@@ -10,7 +10,7 @@ function ToCartBtn(props) {
       data => {
         setNewItem(data)
       }
-    )
+    ).catch(error => console.log('error'))
   const handleClick = () => {
     AddToCard(newItem)
   }
