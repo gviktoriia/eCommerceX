@@ -6,9 +6,13 @@ import SearchIcon from '@mui/icons-material/Search';
 function SearchBar() {
 
   const {search, setSearch} = useContext(SearchBarContext)
-
+  const [localSearch, setLocalSearch] = useState('')
   const handleChange = (event) => {
-    setSearch(event.target.value)
+    setLocalSearch(event.target.value)
+
+  }
+  const handleClick = (event) => {
+   setSearch(localSearch)
   }
   return (
       <>
@@ -22,7 +26,7 @@ function SearchBar() {
             color: "white",
             width: '180px',
         }} />
-        <Button>
+        <Button onClick={handleClick}>
           <SearchIcon style={{ color: 'white', width: '30px', height: '30px',  }}/>
         </Button>
       </>  

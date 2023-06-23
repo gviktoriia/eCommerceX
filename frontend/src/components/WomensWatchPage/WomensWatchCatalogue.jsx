@@ -1,24 +1,51 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import SortingElement from '../MainPage/MainCatalogue/SortingElement';
 import { Box, Grid, useMediaQuery } from '@mui/material';
 import ItemCard from '../MainPage/MainCatalogue/ItemCard';
 import AdminAddItemBtn from '../MainPage/MainCatalogue/AdminAddItemBtn';
 import AddItemDialog from '../MainPage/MainCatalogue/AddItemDialog';
+import { SearchBarContext } from '../MainPage/Header/SearchBarContext';
+
+function deleteByIndex(arr, index) {
+  const newArr = []
+  for (let i = 0; i < arr.length; i++) {
+    if (index !== i)
+      newArr.push(arr[i])
+  }
+  return newArr
+}
 
 function WomensWatchCatalogue() {
-
+  
+  const { search, setSearch } = useContext(SearchBarContext)
   const [sorting, setSorting] = useState('');
   const [watches, setWatches] = useState([{}])
 
   useEffect(() => {
-    fetch('/api/watches/sex/female').then(
-      response => response.json()
-    ).then(
-      data => {
-        setWatches(data)
-      }
-    )
-  }, [])
+    if (search !== '') {
+      console.log(search)
+      fetch(`/api/watches/substring/${search}`).then(
+        response => response.json()
+      ).then(
+        data => {
+          for (let i = 0; i < data.length; i++) {
+            if (data[i].sex !== 'female') {
+              data = deleteByIndex(data, i)
+            }
+          }
+          setWatches(data)
+        }
+      ).catch(error => console.log(error))
+    } else {
+      fetch('/api/watches/sex/female').then(
+        response => response.json()
+      ).then(
+        data => {
+          setWatches(data)
+        }
+      )
+    }
+  }, [search])
 
   const [openAddItemDialog, setOpenAddItemDialog] = useState(false);
   const isScreenSmall = useMediaQuery('(max-width: 600px)');

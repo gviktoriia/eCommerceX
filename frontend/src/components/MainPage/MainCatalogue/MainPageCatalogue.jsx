@@ -11,16 +11,25 @@ function MainPageCatalogue(props) {
   const { search, setSearch } = useContext(SearchBarContext)
   const [sorting, setSorting] = useState('');
   const [watches, setWatches] = useState([{}])
-  console.log(search)
   useEffect(() => {
-    fetch('/api/watches').then(
-      response => response.json()
-    ).then(
-      data => {
-        setWatches(data)
-      }
-    )
-  }, [])
+    if (search !== '') {
+      fetch(`/api/watches/substring/${search}`).then(
+        response => response.json()
+      ).then(
+        data => {
+          setWatches(data)
+        }
+      ).catch(error => console.log(error))
+    } else {
+      fetch('/api/watches').then(
+        response => response.json()
+      ).then(
+        data => {
+          setWatches(data)
+        }
+      ).catch(error => console.log(error))
+    }
+  }, [search])
 
   const [openAddItemDialog, setOpenAddItemDialog] = useState(false);
   const isScreenSmall = useMediaQuery('(max-width: 600px)');
@@ -48,27 +57,27 @@ function MainPageCatalogue(props) {
       backgroundColor: "#171A25",
       height: "fit-content",
     }}>
-        <Grid container direction={isScreenSmall ? 'column' : 'row'} justifyContent="center" alignItems="center">
-          {isScreenSmall ? (
-            <>
-              <Grid item xs={8} sm={6} md={4} lg={3}>
-                <AdminAddItemBtn onClick={handleOpenDialog} />
-              </Grid>
-              <Grid item xs={8} sm={6} md={4} lg={3}>
-                <SortingElement setSorting={setSorting} />
-              </Grid>
-            </>
-          ) : (
-            <>
-              <Grid item xs={8} sm={6} md={4} lg={3}>
-                <AdminAddItemBtn onClick={handleOpenDialog} />
-              </Grid>
-              <Grid item xs={4} sm={6} md={4} lg={3}>
-                <SortingElement setSorting={setSorting}/>
-              </Grid>
-            </>
-          )}
-        </Grid>
+      <Grid container direction={isScreenSmall ? 'column' : 'row'} justifyContent="center" alignItems="center">
+        {isScreenSmall ? (
+          <>
+            <Grid item xs={8} sm={6} md={4} lg={3}>
+              <AdminAddItemBtn onClick={handleOpenDialog} />
+            </Grid>
+            <Grid item xs={8} sm={6} md={4} lg={3}>
+              <SortingElement setSorting={setSorting} />
+            </Grid>
+          </>
+        ) : (
+          <>
+            <Grid item xs={8} sm={6} md={4} lg={3}>
+              <AdminAddItemBtn onClick={handleOpenDialog} />
+            </Grid>
+            <Grid item xs={4} sm={6} md={4} lg={3}>
+              <SortingElement setSorting={setSorting} />
+            </Grid>
+          </>
+        )}
+      </Grid>
       <Grid container columnSpacing={4} rowSpacing={5} sx={{
         textAlign: 'center',
         width: "100%",
