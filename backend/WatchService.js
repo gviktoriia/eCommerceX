@@ -31,7 +31,7 @@ class WatchService{
         if(!message){
             throw new Error('No message');
         }
-        const watches = await WatchDetails.find({name: {$regex: message}});
+        const watches = await WatchDetails.find({name: {$regex: new RegExp("^" + message.toLowerCase(), "i")}});
         return watches;
     }
     async getBySex(message){
