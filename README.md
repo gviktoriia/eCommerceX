@@ -5,7 +5,7 @@
 > Install mongodb
 
 ````sh
-nom install
+npm i bcryptjs express express-validator fs gridfs-stream jsonwebtoken mongoose@5.13.17 multer nodemon multer-gridfs-storage cors jest
 ````
 
 ## Env variables
@@ -18,6 +18,8 @@ const app = express()import Post from "./Post.js";
 ````sh
 npm install
 cd frontend
+npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/material @mui/styled-engine-sc styled-components
 npm start
 ````
 
