@@ -1,4 +1,15 @@
-WATCH - an online store for selling watches made for the university practice. 
+## WATCH  
+
+WATCH - an online store for selling watches made for the university practice.  
+
+## Languages and Tools
+<div id="tools">
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" title="JavaScript" alt="JavaScript"/>&nbsp;
+  <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" title="MongoDB" alt="MondoDB"/>&nbsp;
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" title="React" alt="React"/>&nbsp;
+  <img src="https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white" title="Material UI" alt="Material UI"/>&nbsp;
+  <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" title="Figma" alt="Figma"/>&nbsp;
+</div>
 
 ## Preparation
 
@@ -24,11 +35,6 @@ npm install @mui/material @emotion/react @emotion/styled
 npm install @mui/material @mui/styled-engine-sc styled-components
 npm start
 ````
-
-## Technologies
-
-- [x] React
-
 ## About
 
 * Project represents watch internet shop.
